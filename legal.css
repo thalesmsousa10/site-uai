@@ -1,0 +1,36 @@
+/* Reading surfaces inherit the landing page's palette and typography. */
+.legal-header { display:flex; justify-content:space-between; align-items:center; padding-block:28px; border-bottom:1px solid var(--border); }
+.legal-back { font-size:14px; color:var(--text-mid); }
+.legal-back:hover { color:var(--cyan); }
+.legal-intro { padding:70px 0 30px; max-width:850px; }
+.legal-intro h1 { font:600 clamp(2.6rem,5vw,4.8rem)/1.05 var(--ff-display); letter-spacing:-.035em; margin-bottom:24px; }
+.legal-intro p { color:var(--text-mid); }
+.legal-intro .legal-date { font-size:12px; margin-top:18px; }
+.legal-notice { background:var(--bg-elev); border:1px solid var(--border); padding:22px 26px; color:var(--text-mid); font-size:14px; line-height:1.8; margin-bottom:55px; }
+.legal-notice strong { color:var(--text); }
+.legal-layout { display:grid; grid-template-columns:230px minmax(0,1fr); gap:70px; align-items:start; }
+.legal-toc { position:sticky; top:28px; display:grid; gap:15px; font-size:13px; }
+.legal-toc a { color:var(--text-mid); }
+.legal-toc a:hover { color:var(--cyan); }
+.legal-content { max-width:73ch; min-width:0; }
+.legal-content section { margin-bottom:48px; scroll-margin-top:30px; }
+.legal-content h2 { font:500 27px/1.25 var(--ff-display); margin-bottom:18px; letter-spacing:-.02em; }
+.legal-content p { color:var(--text-mid); font-size:16px; line-height:1.85; margin-bottom:16px; }
+.legal-content a { color:var(--cyan); text-decoration:underline; text-underline-offset:4px; }
+.legal-content a:hover { color:var(--text); }
+.legal-footer { border-top:1px solid var(--border); margin-top:35px; padding-block:30px; display:flex; justify-content:space-between; gap:25px; color:var(--text-mid); font-size:12px; }
+.legal-footer nav { display:flex; gap:25px; flex-wrap:wrap; }
+.legal-footer a:hover { color:var(--cyan); }
+@media(max-width:800px) {
+  .legal-layout { grid-template-columns:1fr; gap:40px; }
+  .legal-toc { position:static; grid-template-columns:1fr 1fr; gap:14px 24px; border-bottom:1px solid var(--border); padding-bottom:28px; }
+  .legal-intro { padding-top:45px; }
+  .legal-notice { margin-bottom:35px; padding:20px; }
+  .legal-footer { flex-direction:column; }
+}
+@media(max-width:420px) {
+  .legal-toc { grid-template-columns:1fr; }
+  .legal-content h2 { font-size:24px; }
+  .legal-content p { font-size:15px; }
+  .legal-back { font-size:12px; }
+}

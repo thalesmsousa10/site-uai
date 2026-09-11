@@ -1,5 +1,5 @@
-/** U.AI — progressive enhancement. Contact destination must be configured before launch. */
-const UAI_CONTACT = { whatsapp: '5531999999999' };
+/** U.AI — progressive enhancement. WhatsApp comercial confirmado pelo responsável: +55 37 99937-6345. */
+const UAI_CONTACT = { whatsapp: '5537999376345' };
 document.addEventListener('DOMContentLoaded', () => {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const reveals = document.querySelectorAll('.reveal');
@@ -24,13 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const filters = document.querySelectorAll('.filter-btn');
   const cards = document.querySelectorAll('.case-card');
-  filters.forEach(btn => {
-    btn.setAttribute('aria-pressed', String(btn.classList.contains('active')));
-    btn.addEventListener('click', () => {
-      filters.forEach(other => { other.classList.toggle('active',other===btn); other.setAttribute('aria-pressed',String(other===btn)); });
-      cards.forEach(card => { card.hidden = btn.dataset.filter !== 'all' && card.dataset.category !== btn.dataset.filter; });
+  if (filters.length > 0) {
+    filters.forEach(btn => {
+      btn.setAttribute('aria-pressed', String(btn.classList.contains('active')));
+      btn.addEventListener('click', () => {
+        filters.forEach(other => { other.classList.toggle('active',other===btn); other.setAttribute('aria-pressed',String(other===btn)); });
+        cards.forEach(card => { card.hidden = btn.dataset.filter !== 'all' && card.dataset.category !== btn.dataset.filter; });
+      });
     });
-  });
+  }
   const faqs = document.querySelectorAll('.faq-item');
   faqs.forEach((item,index) => {
     const trigger = item.querySelector('.faq-trigger');
@@ -82,19 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (UAI_CONTACT.whatsapp) link.href = `https://wa.me/${UAI_CONTACT.whatsapp}`;
     else { link.href = '#calculadora'; link.removeAttribute('target'); link.title = 'Ir para o diagnóstico'; }
     link.rel = 'noopener noreferrer';
-  });
-
-  // Abstract diagrams describe project categories; they are not customer screenshots.
-  const diagrams = [
-    '<path d="M40 100H110M170 100H230M290 100H360"/><circle cx="140" cy="100" r="30"/><circle cx="260" cy="100" r="30"/><rect x="10" y="73" width="30" height="54" rx="4"/><rect x="360" y="73" width="30" height="54" rx="4"/><path d="m130 100 7 7 14-16m99 9 7 7 14-16"/>',
-    '<path d="M35 45H120V100H195M35 155H120V100M245 100H310V45H375M310 100V155H375"/><rect x="195" y="75" width="50" height="50" rx="6"/><circle cx="35" cy="45" r="12"/><circle cx="35" cy="155" r="12"/><circle cx="375" cy="45" r="12"/><circle cx="375" cy="155" r="12"/><path d="m207 99 10 11 15-22"/>',
-    '<rect x="50" y="25" width="280" height="150" rx="6"/><path d="M50 48H330M75 73H175M75 88H146M75 119H145M75 135H125"/><rect x="208" y="72" width="92" height="76" rx="3"/><circle cx="68" cy="37" r="2"/><circle cx="78" cy="37" r="2"/><rect x="295" y="93" width="60" height="95" rx="6"/><path d="M307 112H344M307 124H337M307 156H344"/>',
-    '<path d="M70 50H260V117H120L90 139V117H70ZM145 132H333V170H310V189L282 170H145"/><path d="M95 75H228M95 92H187M168 150H280"/><circle cx="325" cy="63" r="27"/><path d="m314 63 8 8 14-16"/>'
-  ];
-  cards.forEach((card,index) => {
-    const art = document.createElement('div'); art.className = 'case-art'; art.setAttribute('aria-hidden','true');
-    art.innerHTML = `<svg viewBox="0 0 410 210" fill="none" stroke="${['#00c2ff','#b6a0ff','#10b981','#00c2ff'][index]}" stroke-width="1.5">${diagrams[index]}</svg><span class="case-art-label">DIAGRAMA CONCEITUAL</span>`;
-    card.prepend(art);
   });
   if (window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);

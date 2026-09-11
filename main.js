@@ -75,8 +75,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const name = document.getElementById('calcName').value.trim();
     const company = document.getElementById('calcCompany').value.trim();
+    const email = document.getElementById('calcEmail').value.trim();
+    const phone = document.getElementById('calcPhone').value.trim();
     const subject = interest.options[interest.selectedIndex].text;
-    const message = `Olá, sou ${name} da empresa ${company}. Meu interesse: ${subject}. Gostaria de conversar sobre meu projeto com a U.AI.`;
+    const lines = [
+      `Olá, sou ${name}${company ? ` da empresa ${company}` : ''}.`,
+      `Meu interesse: ${subject}.`
+    ];
+    if (email) lines.push(`E-mail: ${email}`);
+    if (phone) lines.push(`WhatsApp: ${phone}`);
+    if (interest.value !== 'web') {
+      const savings = document.getElementById('calcResultVal').textContent.trim();
+      lines.push(`Estimativa de eficiência: ${savings}`);
+    }
+    lines.push('Gostaria de conversar sobre meu projeto com a U.AI.');
+    const message = lines.join('\n');
     window.open(`https://wa.me/${UAI_CONTACT.whatsapp}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
     status.textContent = 'Continue no WhatsApp para enviar sua mensagem. Nenhum diagnóstico foi agendado automaticamente.';
   });

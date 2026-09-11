@@ -797,10 +797,14 @@ section[id],div[id] {
   border:1px solid var(--border);
   border-radius:12px;
 }
+.interest-group {
+  margin-bottom:24px;
+}
 .calc-grid {
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:25px;
+  margin-bottom:28px;
 }
 .form-label {
   display:block;
@@ -824,8 +828,9 @@ section[id],div[id] {
   border-color:var(--cyan);
 }
 .calc-result-box {
-  padding-block:35px;
-  margin-top:25px;
+  padding-block:32px;
+  margin-top:10px;
+  margin-bottom:28px;
   border-block:1px solid var(--border);
 }
 .calc-result-val {
@@ -1431,7 +1436,13 @@ section[id],div[id] {
   color:var(--cyan-bright);
   font-family:var(--ff-mono);
   font-size:12px;
-  margin-bottom:24px;
+  margin-top:16px;
+  margin-bottom:0;
+}
+.preview-note {
+  margin:20px 0 24px;
+  font-size:13px;
+  color:var(--text-mid);
 }
 
 /* === SEÇÃO PROJETOS REAIS (CLIENT WORK) === */

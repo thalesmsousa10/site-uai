@@ -98,8 +98,8 @@
       opacity: 0;
       pointer-events: none;
       background: var(--slide-bg);
-      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease;
-      padding: 70px 100px;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      padding: 56px 90px;
     }
 
     .slide.active,
@@ -154,7 +154,7 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      padding-bottom: 24px;
+      padding-bottom: 20px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
@@ -198,15 +198,16 @@
     .slide-badge {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       background: rgba(0, 210, 255, 0.08);
-      border: 1px solid rgba(0, 210, 255, 0.25);
+      border: 1px solid rgba(0, 210, 255, 0.3);
       color: var(--cyan-neon);
-      padding: 8px 18px;
+      padding: 7px 18px;
       border-radius: 999px;
-      font-size: 14px;
+      font-family: var(--font-display);
+      font-size: 13px;
       font-weight: 700;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
     }
 
@@ -223,9 +224,9 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      padding-top: 20px;
+      padding-top: 18px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-muted);
     }
 
@@ -239,25 +240,25 @@
        TYPOGRAPHY
        =========================================== */
     .title-kicker {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       color: var(--cyan-neon);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .slide-title {
       font-family: var(--font-display);
-      font-size: 50px;
+      font-size: 44px;
       font-weight: 800;
       line-height: 1.15;
-      letter-spacing: -1.2px;
+      letter-spacing: -1px;
       color: #ffffff;
-      margin-bottom: 16px;
+      margin-bottom: 10px;
     }
 
     .slide-title .gradient-text {
@@ -266,16 +267,10 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .slide-title .gradient-green {
-      background: linear-gradient(135deg, #ffffff 40%, #34d399 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
     .slide-subtitle {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 400;
-      line-height: 1.5;
+      line-height: 1.45;
       color: var(--text-muted);
       max-width: 1200px;
     }
@@ -285,23 +280,18 @@
        =========================================== */
     .grid-3 {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      margin-top: 36px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      margin-top: 24px;
+      width: 100%;
     }
 
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-top: 36px;
-    }
-
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 28px;
-      margin-top: 36px;
+      gap: 36px;
+      margin-top: 24px;
+      width: 100%;
     }
 
     /* Dark Glass Card */
@@ -309,12 +299,13 @@
       background: var(--bg-card-dark);
       border: 1px solid var(--border-dark);
       border-radius: 20px;
-      padding: 38px 34px;
+      padding: 30px 28px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
       overflow: hidden;
+      min-width: 0;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
     }
 
@@ -327,68 +318,61 @@
     .card-light {
       background: var(--bg-card-light);
       color: var(--text-dark);
+      border: 1px solid #ffffff;
       border-radius: 20px;
-      padding: 38px 34px;
+      padding: 30px 28px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.9);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
       position: relative;
-    }
-
-    .card-light .card-badge {
-      background: rgba(37, 99, 235, 0.1);
-      color: var(--blue-accent);
-      border: 1px solid rgba(37, 99, 235, 0.25);
+      overflow: hidden;
+      min-width: 0;
     }
 
     .card-light h3 {
       font-family: var(--font-display);
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 800;
       color: var(--text-dark);
       line-height: 1.25;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .card-light p {
       color: var(--text-dark-muted);
-      font-size: 17px;
-      line-height: 1.55;
-    }
-
-    .card-light .metric-highlight {
-      color: var(--blue-accent);
+      font-size: 16px;
+      line-height: 1.5;
     }
 
     /* Standard Dark Card Typo */
     .card-dark h3 {
       font-family: var(--font-display);
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 800;
       color: #ffffff;
       line-height: 1.25;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .card-dark p {
       color: var(--text-muted);
-      font-size: 17px;
-      line-height: 1.55;
+      font-size: 16px;
+      line-height: 1.5;
     }
 
     .card-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 14px;
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
       background: rgba(0, 210, 255, 0.1);
       border: 1px solid rgba(0, 210, 255, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
+      font-size: 24px;
       color: var(--cyan-neon);
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
 
     .card-icon.red {
@@ -412,18 +396,18 @@
     /* Feature List inside cards */
     .feature-list {
       list-style: none;
-      margin-top: 20px;
+      margin-top: 16px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     .feature-list li {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
-      font-size: 16px;
-      line-height: 1.45;
+      gap: 10px;
+      font-size: 15px;
+      line-height: 1.4;
       color: #cbd5e1;
     }
 
@@ -432,15 +416,15 @@
     }
 
     .check-bullet {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       background: rgba(0, 210, 255, 0.15);
       color: var(--cyan-neon);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
       flex-shrink: 0;
       margin-top: 2px;
@@ -456,9 +440,10 @@
       display: flex;
       align-items: baseline;
       gap: 12px;
-      margin-top: 24px;
-      padding-top: 20px;
+      margin-top: 18px;
+      padding-top: 16px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
+      min-width: 0;
     }
 
     .card-light .metric-row {
@@ -467,10 +452,12 @@
 
     .metric-num {
       font-family: var(--font-display);
-      font-size: 44px;
+      font-size: 40px;
       font-weight: 900;
       color: var(--cyan-neon);
       line-height: 1;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .card-light .metric-num {
@@ -481,7 +468,8 @@
       font-size: 14px;
       font-weight: 600;
       color: var(--text-muted);
-      line-height: 1.3;
+      line-height: 1.35;
+      min-width: 0;
     }
 
     .card-light .metric-desc {
@@ -489,7 +477,7 @@
     }
 
     /* ===========================================
-       SLIDE 1: HERO / TITLE SLIDE SPECIFICS
+       SLIDE 1: HERO SPECIFICS
        =========================================== */
     .hero-content {
       display: flex;
@@ -497,47 +485,49 @@
       justify-content: center;
       align-items: flex-start;
       height: 100%;
-      max-width: 1400px;
+      max-width: 1500px;
       margin: auto 0;
     }
 
     .hero-pill-badge {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      padding: 10px 24px;
+      gap: 10px;
+      padding: 8px 20px;
       background: rgba(16, 26, 48, 0.8);
       border: 1px solid rgba(0, 210, 255, 0.35);
       border-radius: 999px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 28px;
-    }
-
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: 76px;
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -2px;
       color: #ffffff;
       margin-bottom: 24px;
     }
 
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 72px;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      color: #ffffff;
+      margin-bottom: 22px;
+    }
+
     .hero-description {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 400;
       line-height: 1.45;
       color: #cbd5e1;
-      max-width: 1100px;
-      margin-bottom: 48px;
+      max-width: 1200px;
+      margin-bottom: 40px;
     }
 
+    /* Unified 3-Column Hero Grid */
     .hero-pills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      width: 100%;
     }
 
     .hero-service-pill {
@@ -545,46 +535,34 @@
       align-items: center;
       gap: 16px;
       background: rgba(16, 26, 48, 0.95);
-      border: 1.5px solid rgba(0, 210, 255, 0.3);
-      padding: 18px 28px;
+      border: 1.5px solid rgba(0, 210, 255, 0.35);
+      padding: 22px 24px;
       border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    }
-
-    .hero-service-pill.featured {
-      background: #ffffff;
-      border-color: #ffffff;
-    }
-
-    .hero-service-pill.featured span.pill-title {
-      color: var(--text-dark);
-      font-weight: 800;
-    }
-
-    .hero-service-pill.featured span.pill-num {
-      background: var(--blue-accent);
-      color: #ffffff;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      min-width: 0;
     }
 
     .pill-num {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
       background: rgba(0, 210, 255, 0.15);
       color: var(--cyan-neon);
       font-family: var(--font-display);
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 800;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
 
     .pill-title {
       font-family: var(--font-display);
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 700;
       color: #ffffff;
+      line-height: 1.3;
     }
 
     /* ===========================================
@@ -594,11 +572,12 @@
       background: var(--bg-card-dark);
       border: 1px solid var(--border-dark);
       border-radius: 18px;
-      padding: 26px 28px;
+      padding: 24px 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
+      min-width: 0;
     }
 
     .case-card.featured {
@@ -612,35 +591,36 @@
       letter-spacing: 0.5px;
       text-transform: uppercase;
       color: var(--cyan-neon);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .case-client {
       font-family: var(--font-display);
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 800;
       color: #ffffff;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .case-desc {
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--text-muted);
       line-height: 1.45;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .case-metric {
       font-family: var(--font-display);
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 900;
       color: var(--green-accent);
       line-height: 1;
       margin-bottom: 4px;
+      white-space: nowrap;
     }
 
     .case-metric-label {
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
       color: #e2e8f0;
     }
@@ -650,51 +630,46 @@
        =========================================== */
     .steps-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 24px;
-      margin-top: 48px;
-      position: relative;
+      margin-top: 36px;
+      width: 100%;
     }
 
     .step-card {
       background: var(--bg-card-dark);
-      border: 1px solid var(--border-dark);
+      border: 1px solid rgba(0, 210, 255, 0.25);
       border-radius: 20px;
-      padding: 36px 30px;
+      padding: 30px 26px;
       position: relative;
+      min-width: 0;
     }
 
+    /* Step numbers with full visibility and contrast */
     .step-number {
       font-family: var(--font-display);
-      font-size: 64px;
+      font-size: 54px;
       font-weight: 900;
       line-height: 1;
-      color: rgba(255, 255, 255, 0.1);
-      margin-bottom: 20px;
+      color: var(--cyan-neon);
+      text-shadow: 0 0 16px rgba(0, 210, 255, 0.4);
+      margin-bottom: 16px;
       letter-spacing: -2px;
-    }
-
-    .step-card.active-step .step-number {
-      color: rgba(0, 210, 255, 0.35);
-    }
-
-    .step-card.active-step {
-      border-color: rgba(0, 210, 255, 0.4);
     }
 
     .step-title {
       font-family: var(--font-display);
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 800;
       color: #ffffff;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       line-height: 1.3;
     }
 
     .step-desc {
-      font-size: 16px;
+      font-size: 15px;
       color: var(--text-muted);
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
     /* ===========================================
@@ -703,51 +678,54 @@
     .cta-container {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
-      gap: 48px;
-      margin-top: 40px;
+      gap: 36px;
+      margin-top: 24px;
       align-items: stretch;
+      width: 100%;
     }
 
     .cta-main-box {
       background: #ffffff;
       color: var(--text-dark);
       border-radius: 24px;
-      padding: 56px;
+      padding: 40px 44px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+      min-width: 0;
+      overflow: hidden;
     }
 
     .cta-main-box h3 {
       font-family: var(--font-display);
-      font-size: 40px;
+      font-size: 34px;
       font-weight: 900;
       line-height: 1.15;
       color: var(--text-dark);
-      letter-spacing: -1px;
-      margin-bottom: 18px;
+      letter-spacing: -0.8px;
+      margin-bottom: 12px;
     }
 
     .cta-main-box p {
-      font-size: 20px;
+      font-size: 17px;
       color: var(--text-dark-muted);
-      line-height: 1.5;
-      margin-bottom: 32px;
+      line-height: 1.45;
+      margin-bottom: 24px;
     }
 
     .cta-benefits {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      margin-bottom: 40px;
+      gap: 10px;
+      margin-bottom: 28px;
     }
 
     .cta-benefit-item {
       display: flex;
       align-items: center;
-      gap: 14px;
-      font-size: 18px;
+      gap: 12px;
+      font-size: 16px;
       font-weight: 600;
       color: #1e293b;
     }
@@ -756,16 +734,16 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 14px;
+      gap: 12px;
       background: #2563eb;
       color: #ffffff;
-      padding: 22px 38px;
-      border-radius: 14px;
+      padding: 16px 32px;
+      border-radius: 12px;
       font-family: var(--font-display);
-      font-size: 22px;
+      font-size: 19px;
       font-weight: 800;
       text-decoration: none;
-      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
       transition: all 0.2s ease;
     }
 
@@ -778,22 +756,23 @@
       background: var(--bg-card-dark);
       border: 1px solid rgba(0, 210, 255, 0.35);
       border-radius: 24px;
-      padding: 48px;
+      padding: 40px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      min-width: 0;
     }
 
     .contact-item {
       display: flex;
       align-items: flex-start;
-      gap: 18px;
-      margin-bottom: 28px;
+      gap: 16px;
+      margin-bottom: 22px;
     }
 
     .contact-icon {
-      width: 52px;
-      height: 52px;
+      width: 48px;
+      height: 48px;
       border-radius: 12px;
       background: rgba(0, 210, 255, 0.1);
       border: 1px solid rgba(0, 210, 255, 0.3);
@@ -801,12 +780,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      font-size: 20px;
       flex-shrink: 0;
     }
 
     .contact-label {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -816,7 +795,7 @@
 
     .contact-value {
       font-family: var(--font-display);
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       color: #ffffff;
       text-decoration: none;
@@ -897,8 +876,7 @@
     }
 
     /* ===========================================
-       PRINT & PDF EXPORT RULES
-       Guarantees pixel-perfect 1920x1080 per page
+       PRINT RULES
        =========================================== */
     @page {
       size: 1920px 1080px;
@@ -971,7 +949,7 @@
             </div>
             <div class="slide-badge">
               <span class="slide-badge-dot"></span>
-              Apresentação Comercial Executiva • 2026
+              Slide 01 / 08 • Apresentação Executiva 2026
             </div>
           </div>
 
@@ -992,7 +970,7 @@
                 <span class="pill-num">01</span>
                 <span class="pill-title">Websites &amp; Landing Pages de Alta Performance</span>
               </div>
-              <div class="hero-service-pill featured">
+              <div class="hero-service-pill">
                 <span class="pill-num">02</span>
                 <span class="pill-title">Agentes Autônomos de IA para Atendimento &amp; Vendas</span>
               </div>
@@ -1022,13 +1000,13 @@
             </div>
             <div class="slide-badge">
               <span class="slide-badge-dot"></span>
-              01 • O Gargalo Invisível da Escala
+              Slide 02 / 08 • O Diagnóstico de Escala
             </div>
           </div>
 
           <div>
             <div class="title-kicker">O PROBLEMA DAS EMPRESAS EM CRESCIMENTO</div>
-            <h2 class="slide-title">Três fatores silenciosos que drenam lucros e travam a expansão comercial.</h2>
+            <h2 class="slide-title">Três fatores silenciosos que drenam lucros e travam a expansão.</h2>
             <p class="slide-subtitle">A maioria dos negócios tenta resolver problemas modernos contratando mais pessoas para executar rotinas repetitivas, quando na verdade precisa de inteligência e processos autônomos.</p>
           </div>
 
@@ -1037,8 +1015,8 @@
             <div class="card-dark">
               <div>
                 <div class="card-icon red">⚠️</div>
-                <h3>Presença Digital Frágil e Ultrapassada</h3>
-                <p>Sites lentos, templates genéricos ou ausência de autoridade visual transmitem amadorismo e afastam clientes qualificados de ticket alto para concorrentes mais bem posicionados.</p>
+                <h3>Presença Digital Frágil</h3>
+                <p>Sites lentos, templates genéricos ou ausência de autoridade visual transmitem amadorismo e afastam clientes qualificados para concorrentes.</p>
                 <ul class="feature-list">
                   <li><span class="check-bullet" style="color:#ef4444; background:rgba(239,68,68,0.15)">✕</span> Mais de 50% dos visitantes abandonam sites lentos</li>
                   <li><span class="check-bullet" style="color:#ef4444; background:rgba(239,68,68,0.15)">✕</span> Falta de clareza no valor gerado pelo negócio</li>
@@ -1054,8 +1032,8 @@
             <div class="card-light">
               <div>
                 <div class="card-icon blue">⏳</div>
-                <h3>Atendimento Lento e Oportunidades Perdidas</h3>
-                <p>O lead entra no WhatsApp pelo anúncio ou indicação e aguarda 30 minutos a 2 horas por uma resposta. No ambiente digital atual, a velocidade de contato dita o fechamento.</p>
+                <h3>Atendimento Lento no WhatsApp</h3>
+                <p>O lead entra pelo anúncio ou indicação e aguarda 30 min a 2 horas por uma resposta. No ambiente digital, a velocidade dita o fechamento.</p>
                 <ul class="feature-list">
                   <li><span class="check-bullet">!</span> 78% dos clientes fecham com quem responde primeiro</li>
                   <li><span class="check-bullet">!</span> Leads noturnos e de fins de semana ficam sem resposta</li>
@@ -1071,8 +1049,8 @@
             <div class="card-dark">
               <div>
                 <div class="card-icon green">⚙️</div>
-                <h3>Trabalho Manual e Sobrecarga da Equipe</h3>
-                <p>Talentos comerciais e operacionais desperdiçando horas diárias copiando dados de CRM, preenchendo propostas à mão em PDF e cobrando clientes manualmente.</p>
+                <h3>Sobrecarga em Rotinas Manuais</h3>
+                <p>Talentos comerciais desperdiçando horas copiando dados em CRM, preenchendo propostas à mão em PDF e cobrando clientes manualmente.</p>
                 <ul class="feature-list">
                   <li><span class="check-bullet" style="color:#f59e0b; background:rgba(245,158,11,0.15)">!</span> Equipes exaustas com rotinas burocráticas</li>
                   <li><span class="check-bullet" style="color:#f59e0b; background:rgba(245,158,11,0.15)">!</span> Erros operacionais em planilhas e digitação</li>
@@ -1104,14 +1082,14 @@
             </div>
             <div class="slide-badge">
               <span class="slide-badge-dot"></span>
-              02 • Websites &amp; Landing Pages
+              Slide 03 / 08 • Websites &amp; Landing Pages
             </div>
           </div>
 
           <div>
             <div class="title-kicker">PILAR 01: ENGENHARIA VISUAL DE ALTO IMPACTO</div>
             <h2 class="slide-title">Presença digital cinematográfica desenhada para converter.</h2>
-            <p class="slide-subtitle">Não criamos sites comuns de template. Projetamos plataformas proprietárias que transformam o seu posicionamento no mercado em uma máquina de captação de clientes.</p>
+            <p class="slide-subtitle">Não criamos sites comuns de template. Projetamos plataformas proprietárias que transformam o seu posicionamento em uma máquina de captação de clientes.</p>
           </div>
 
           <div class="grid-2">
@@ -1120,22 +1098,22 @@
               <div>
                 <div class="card-icon">💻</div>
                 <h3>O que entregamos para o seu negócio:</h3>
-                <ul class="feature-list" style="gap: 16px;">
+                <ul class="feature-list" style="gap: 14px;">
                   <li>
                     <span class="check-bullet">✓</span>
-                    <div><strong>Direção de Arte Autoral:</strong> Identidade visual única, estética refinada, paleta de alto contraste e tipografia elegante que posiciona sua marca no topo da categoria.</div>
+                    <div><strong>Direção de Arte Autoral:</strong> Identidade visual única, estética refinada, paleta de alto contraste e tipografia elegante que posiciona sua marca no topo.</div>
                   </li>
                   <li>
                     <span class="check-bullet">✓</span>
-                    <div><strong>Engenharia de Velocidade:</strong> Carregamento sub-segundo (< 1s), pontuação A no Google PageSpeed e código limpo sem dependências pesadas de construtores lentos.</div>
+                    <div><strong>Engenharia de Velocidade:</strong> Carregamento sub-segundo (< 1s), pontuação máxima no Google PageSpeed e código limpo sem construtores lentos.</div>
                   </li>
                   <li>
                     <span class="check-bullet">✓</span>
-                    <div><strong>Arquitetura CRO (Conversion Rate Optimization):</strong> Copywriting estratégico, gatilhos de prova social e CTAs diretos para o WhatsApp e formulários inteligentes.</div>
+                    <div><strong>Arquitetura CRO:</strong> Copywriting estratégico, gatilhos de prova social e CTAs diretos para o WhatsApp e formulários inteligentes.</div>
                   </li>
                   <li>
                     <span class="check-bullet">✓</span>
-                    <div><strong>Infraestrutura e Segurança:</strong> Domínio próprio, hospedagem segura, SSL ativado e rastreamento avançado (Pixel Meta, GA4 e Google Tag Manager).</div>
+                    <div><strong>Rastreamento &amp; Segurança:</strong> Domínio próprio, SSL ativado e rastreamento avançado (Pixel Meta, GA4 e Google Tag Manager).</div>
                   </li>
                 </ul>
               </div>
@@ -1144,26 +1122,26 @@
             <!-- Coluna Direita: Destaque Misto / Números Reais -->
             <div class="card-light">
               <div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
                   <span style="font-size: 13px; font-weight: 800; letter-spacing: 1px; color: var(--blue-accent); text-transform: uppercase;">Impacto Direto no Faturamento</span>
                   <span style="background: rgba(37,99,235,0.1); color: var(--blue-accent); padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 700;">Cases Auditados</span>
                 </div>
-                <h3>A diferença entre um site comum e um ecossistema U.AI</h3>
-                <p>Uma presença digital profissional reduz o custo por lead (CPL), qualifica o comprador antes mesmo da conversa e gera confiança imediata para tomadores de decisão.</p>
+                <h3>A diferença entre um site comum e a U.AI</h3>
+                <p>Uma presença digital profissional reduz o custo por lead (CPL), qualifica o comprador antes mesmo da conversa e gera confiança imediata.</p>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px;">
-                  <div style="background: #f1f5f9; padding: 20px; border-radius: 14px;">
-                    <div class="metric-num" style="font-size: 40px;">+140%</div>
-                    <div class="metric-desc">aumento em conversão registrado no case Uai Sô Travel</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 22px;">
+                  <div style="background: #f1f5f9; padding: 18px; border-radius: 14px; min-width: 0;">
+                    <div class="metric-num" style="font-size: 36px; white-space: nowrap; line-height: 1.1;">+140%</div>
+                    <div class="metric-desc" style="margin-top: 6px; font-size: 13px; line-height: 1.35;">conversão comprovada no case Uai Sô Travel</div>
                   </div>
-                  <div style="background: #f1f5f9; padding: 20px; border-radius: 14px;">
-                    <div class="metric-num" style="font-size: 40px;">< 0.8s</div>
-                    <div class="metric-desc">tempo médio de carregamento no celular</div>
+                  <div style="background: #f1f5f9; padding: 18px; border-radius: 14px; min-width: 0;">
+                    <div class="metric-num" style="font-size: 36px; white-space: nowrap; line-height: 1.1;">&lt; 0.8s</div>
+                    <div class="metric-desc" style="margin-top: 6px; font-size: 13px; line-height: 1.35;">tempo médio de carregamento no celular</div>
                   </div>
                 </div>
 
-                <div style="margin-top: 24px; padding: 16px; background: rgba(37,99,235,0.06); border-left: 4px solid var(--blue-accent); border-radius: 6px; font-size: 15px; color: #1e293b;">
-                  <strong>Diferencial Técnico:</strong> Código estruturado com semântica moderna e conformidade total com a LGPD e privacidade.
+                <div style="margin-top: 20px; padding: 14px 16px; background: rgba(37,99,235,0.06); border-left: 4px solid var(--blue-accent); border-radius: 6px; font-size: 14.5px; color: #1e293b;">
+                  <strong>Diferencial Técnico:</strong> Código semântico moderno e conformidade total com a LGPD e privacidade.
                 </div>
               </div>
             </div>
@@ -1171,7 +1149,7 @@
 
           <div class="slide-bottom">
             <span>U.AI • Websites Institucionais, Landing Pages e Portais</span>
-            <span>Projetos entregues: Coplan Engenharia, VAF Global, Seven Gestão, Uai Sô Travel</span>
+            <span>Cases entregues: Coplan Engenharia, VAF Global, Seven Gestão, Uai Sô Travel</span>
           </div>
         </div>
       </section>
@@ -1188,7 +1166,7 @@
             </div>
             <div class="slide-badge">
               <span class="slide-badge-dot"></span>
-              03 • Agentes Autônomos de IA
+              Slide 04 / 08 • Agentes Autônomos de IA
             </div>
           </div>
 
@@ -1204,10 +1182,10 @@
               <div>
                 <div class="card-icon">🎯</div>
                 <h3>Agente SDR (Pré-Vendas)</h3>
-                <p>Recebe leads de anúncios ou do site imediatamente. Faz perguntas de triagem personalizadas, identifica o perfil de compra e agenda a reunião direto na agenda dos seus consultores.</p>
+                <p>Recebe leads do site ou anúncios. Faz perguntas de triagem, identifica o perfil de compra e agenda a reunião direto no calendário dos consultores.</p>
                 <ul class="feature-list">
-                  <li><span class="check-bullet">✓</span> Qualificação profunda por faturamento/porte</li>
-                  <li><span class="check-bullet">✓</span> Integração direta com Google Agenda e CRM</li>
+                  <li><span class="check-bullet">✓</span> Qualificação profunda de interesse e orçamento</li>
+                  <li><span class="check-bullet">✓</span> Integração com Google Agenda e CRM</li>
                   <li><span class="check-bullet">✓</span> Envio do link da reunião e lembretes</li>
                 </ul>
               </div>
@@ -1221,17 +1199,17 @@
             <div class="card-light">
               <div>
                 <div class="card-icon blue">💬</div>
-                <h3>Agente Especialista de Atendimento</h3>
-                <p>Alimentado com todo o material técnico, catálogo de produtos, tabela de preços e regras de negócio da sua empresa. Responde com precisão cirúrgica e tom humanizado.</p>
+                <h3>Especialista de Atendimento</h3>
+                <p>Treinado no catálogo de produtos, tabela de preços e regras de negócio da sua empresa. Responde com precisão cirúrgica e tom humanizado.</p>
                 <ul class="feature-list">
                   <li><span class="check-bullet">✓</span> Resolução de até 85% das dúvidas frequentes</li>
                   <li><span class="check-bullet">✓</span> Transbordo inteligente para atendente humano</li>
-                  <li><span class="check-bullet">✓</span> Suporte sem fila de espera e sem estresse</li>
+                  <li><span class="check-bullet">✓</span> Suporte contínuo sem filas de espera</li>
                 </ul>
               </div>
               <div class="metric-row">
                 <div class="metric-num">24/7</div>
-                <div class="metric-desc">disponibilidade contínua em feriados e finais de semana</div>
+                <div class="metric-desc">disponibilidade ativa em feriados e fins de semana</div>
               </div>
             </div>
 
@@ -1239,12 +1217,12 @@
             <div class="card-dark">
               <div>
                 <div class="card-icon green">🎙️</div>
-                <h3>Agente Multimodal (Áudio &amp; Texto)</h3>
-                <p>O cliente enviou um áudio de 2 minutos no WhatsApp? O agente ouve, transcreve com precisão, interpreta o pedido e responde com cordialidade por voz ou texto.</p>
+                <h3>Agente Multimodal (Voz)</h3>
+                <p>O cliente enviou um áudio de 2 minutos no WhatsApp? O agente ouve, transcreve, interpreta o pedido e responde com cordialidade por voz ou texto.</p>
                 <ul class="feature-list">
                   <li><span class="check-bullet">✓</span> Compreensão de áudios informais com sotaques</li>
-                  <li><span class="check-bullet">✓</span> Geração de respostas em áudio natural se desejado</li>
-                  <li><span class="check-bullet">✓</span> Leitura e interpretação de documentos e fotos</li>
+                  <li><span class="check-bullet">✓</span> Respostas em áudio ultra-natural</li>
+                  <li><span class="check-bullet">✓</span> Leitura de PDFs, fotos e orçamentos</li>
                 </ul>
               </div>
               <div class="metric-row">
@@ -1273,7 +1251,7 @@
             </div>
             <div class="slide-badge">
               <span class="slide-badge-dot"></span>
-              04 • Automação &amp; Integrações
+              Slide 05 / 08 • Automação &amp; Integrações
             </div>
           </div>
 
@@ -1286,26 +1264,28 @@
           <div class="grid-2">
             <!-- Coluna 1: O que automatizamos -->
             <div class="card-dark">
-              <div class="card-icon green">⚡</div>
-              <h3>Fluxos de Negócio que Implementamos:</h3>
-              <ul class="feature-list" style="gap: 16px;">
-                <li>
-                  <span class="check-bullet" style="color:#34d399; background:rgba(16,185,129,0.15)">✓</span>
-                  <div><strong>Geração Instantânea de Propostas Comerciais:</strong> Coleta dados do cliente e cria um PDF personalizado com valores e condições enviado em segundos no WhatsApp.</div>
-                </li>
-                <li>
-                  <span class="check-bullet" style="color:#34d399; background:rgba(16,185,129,0.15)">✓</span>
-                  <div><strong>Sincronização CRM &amp; Planilhas:</strong> Cada lead, proposta e etapa do funil é atualizada automaticamente em ferramentas como HubSpot, RD Station, Kommo ou Notion.</div>
-                </li>
-                <li>
-                  <span class="check-bullet" style="color:#34d399; background:rgba(16,185,129,0.15)">✓</span>
-                  <div><strong>Contratos &amp; Assinaturas Digitais:</strong> Disparo automático via ZapSign, Clicksign ou DocuSign assim que a proposta é aceita pelo cliente.</div>
-                </li>
-                <li>
-                  <span class="check-bullet" style="color:#34d399; background:rgba(16,185,129,0.15)">✓</span>
-                  <div><strong>Régua de Follow-up Automático:</strong> Lembretes gentis e estratégicos disparados para clientes com orçamentos em aberto, recuperando até 25% de vendas esquecidas.</div>
-                </li>
-              </ul>
+              <div>
+                <div class="card-icon green">⚡</div>
+                <h3>Fluxos de Negócio que Implementamos:</h3>
+                <ul class="feature-list" style="gap: 14px;">
+                  <li>
+                    <span class="check-bullet" style="color:#34d399; background:rgba(16,185,129,0.15)">✓</span>
+                    <div><strong>Geração Instantânea de Propostas:</strong> Coleta dados do lead e gera um PDF personalizado com valores enviado em segundos no WhatsApp.</div>
+                  </li>
+                  <li>
+                    <span class="check-bullet" style="color:#34d399; background:rgba(16,185,129,0.15)">✓</span>
+                    <div><strong>Sincronização CRM &amp; Planilhas:</strong> Cada etapa do funil é atualizada automaticamente no HubSpot, RD Station, Kommo ou Notion.</div>
+                  </li>
+                  <li>
+                    <span class="check-bullet" style="color:#34d399; background:rgba(16,185,129,0.15)">✓</span>
+                    <div><strong>Contratos &amp; Assinaturas Digitais:</strong> Disparo automático via ZapSign, Clicksign ou DocuSign assim que a proposta é aceita.</div>
+                  </li>
+                  <li>
+                    <span class="check-bullet" style="color:#34d399; background:rgba(16,185,129,0.15)">✓</span>
+                    <div><strong>Follow-up Inteligente:</strong> Lembretes gentis disparados para orçamentos em aberto, recuperando até 25% de vendas esquecidas.</div>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             <!-- Coluna 2 (Misto Claro): O Resultado Prático -->
@@ -1314,26 +1294,26 @@
                 <span style="font-size: 13px; font-weight: 800; letter-spacing: 1px; color: var(--blue-accent); text-transform: uppercase;">Antes vs. Depois da U.AI</span>
                 <h3 style="margin-top: 10px;">Como sua operação funciona após a automação</h3>
 
-                <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 16px;">
-                  <div style="display: flex; gap: 14px; align-items: center; padding: 14px; background: #fee2e2; border-radius: 10px;">
-                    <span style="font-weight: 800; color: #dc2626; font-size: 18px;">Antes:</span>
-                    <span style="color: #7f1d1d; font-size: 15px;">Vendedor gasta 40 minutos preenchendo proposta manual e esquece de fazer follow-up.</span>
+                <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 14px;">
+                  <div style="display: flex; gap: 12px; align-items: center; padding: 14px; background: #fee2e2; border-radius: 10px;">
+                    <span style="font-weight: 800; color: #dc2626; font-size: 16px; flex-shrink: 0;">Antes:</span>
+                    <span style="color: #7f1d1d; font-size: 14.5px;">Vendedor gasta 40 min preenchendo proposta manual e esquece o follow-up.</span>
                   </div>
 
-                  <div style="display: flex; gap: 14px; align-items: center; padding: 14px; background: #dcfce7; border-radius: 10px;">
-                    <span style="font-weight: 800; color: #15803d; font-size: 18px;">Com U.AI:</span>
-                    <span style="color: #14532d; font-size: 15px;">Proposta montada em 15 segundos, enviada no WhatsApp e follow-up automático agendado.</span>
+                  <div style="display: flex; gap: 12px; align-items: center; padding: 14px; background: #dcfce7; border-radius: 10px;">
+                    <span style="font-weight: 800; color: #15803d; font-size: 16px; flex-shrink: 0;">Com U.AI:</span>
+                    <span style="color: #14532d; font-size: 14.5px;">Proposta montada em 15 segundos no WhatsApp com follow-up automático.</span>
                   </div>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px;">
-                  <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 18px; border-radius: 12px;">
-                    <div class="metric-num" style="font-size: 38px;">-80%</div>
-                    <div class="metric-desc">de tempo gasto em rotinas burocráticas</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px;">
+                  <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 16px; border-radius: 12px; min-width: 0;">
+                    <div class="metric-num" style="font-size: 36px; white-space: nowrap; line-height: 1.1;">-80%</div>
+                    <div class="metric-desc" style="margin-top: 6px; font-size: 13px; line-height: 1.35;">tempo gasto em rotinas burocráticas</div>
                   </div>
-                  <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 18px; border-radius: 12px;">
-                    <div class="metric-num" style="font-size: 38px;">Zero</div>
-                    <div class="metric-desc">erros de digitação e duplicidade de dados</div>
+                  <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 16px; border-radius: 12px; min-width: 0;">
+                    <div class="metric-num" style="font-size: 36px; white-space: nowrap; line-height: 1.1;">Zero</div>
+                    <div class="metric-desc" style="margin-top: 6px; font-size: 13px; line-height: 1.35;">erros de digitação e duplicidade</div>
                   </div>
                 </div>
               </div>
@@ -1359,7 +1339,7 @@
             </div>
             <div class="slide-badge">
               <span class="slide-badge-dot"></span>
-              05 • Cases de Sucesso
+              Slide 06 / 08 • Cases de Sucesso
             </div>
           </div>
 
@@ -1369,13 +1349,13 @@
             <p class="slide-subtitle">Conheça empresas que confiaram na engenharia e na inteligência da U.AI para destravar seu crescimento digital.</p>
           </div>
 
-          <div class="grid-3" style="margin-top: 28px;">
+          <div class="grid-3" style="margin-top: 22px;">
             <!-- Case 1 -->
             <div class="case-card featured">
               <div>
                 <div class="case-badge">TURISMO EXECUTIVO &amp; ALTO PADRÃO</div>
                 <div class="case-client">Uai Sô Travel</div>
-                <p class="case-desc">Redesign cinematográfico com foco em conversão e captação qualificada para viagens personalizadas em Minas Gerais e no Brasil.</p>
+                <p class="case-desc">Redesign cinematográfico com foco em conversão e captação qualificada para viagens de alto padrão.</p>
               </div>
               <div>
                 <div class="case-metric">+140%</div>
@@ -1388,7 +1368,7 @@
               <div>
                 <div class="case-badge">COMÉRCIO EXTERIOR</div>
                 <div class="case-client">VAF Global</div>
-                <p class="case-desc">Hub institucional multilíngue e estruturação de agentes inteligentes para triagem de cotações de importação e exportação.</p>
+                <p class="case-desc">Hub institucional multilíngue e agentes inteligentes para triagem de cotações internacionais.</p>
               </div>
               <div>
                 <div class="case-metric" style="color:var(--cyan-neon)">3x Mais</div>
@@ -1401,7 +1381,7 @@
               <div>
                 <div class="case-badge">ENGENHARIA E CONSTRUÇÃO</div>
                 <div class="case-client">Coplan Engenharia</div>
-                <p class="case-desc">Digitalização do catálogo de obras corporativas e fluxo automatizado de cotação e propostas técnicas em PDF.</p>
+                <p class="case-desc">Digitalização de catálogo corporativo e fluxo automatizado de cotações técnicas em PDF.</p>
               </div>
               <div>
                 <div class="case-metric">-80%</div>
@@ -1414,7 +1394,7 @@
               <div>
                 <div class="case-badge">REPRESENTAÇÃO COMERCIAL</div>
                 <div class="case-client">Seven Gestão &amp; Negócios</div>
-                <p class="case-desc">Plataforma digital para representação de marcas com catálogo inteligente de produtos e captação direta de lojistas.</p>
+                <p class="case-desc">Plataforma digital para representação comercial com catálogo inteligente e captação de lojistas.</p>
               </div>
               <div>
                 <div class="case-metric" style="color:var(--cyan-neon)">100%</div>
@@ -1427,7 +1407,7 @@
               <div>
                 <div class="case-badge">CONTROLADORIA &amp; FINANÇAS</div>
                 <div class="case-client">Sevalho Controladoria</div>
-                <p class="case-desc">Automação de relatórios gerenciais e consolidação contábil, eliminando a dependência de planilhas manuais.</p>
+                <p class="case-desc">Automação de relatórios gerenciais e consolidação contábil, eliminando a digitação manual.</p>
               </div>
               <div>
                 <div class="case-metric">+25 Horas</div>
@@ -1440,7 +1420,7 @@
               <div>
                 <div class="case-badge" style="color:var(--blue-accent)">ADVOCACIA CORPORATIVA</div>
                 <div class="case-client" style="color:var(--text-dark)">LCO Advogados</div>
-                <p class="case-desc" style="color:var(--text-dark-muted)">Posicionamento digital de alta autoridade com arquitetura de conteúdo sob medida para direito empresarial e tributário.</p>
+                <p class="case-desc" style="color:var(--text-dark-muted)">Posicionamento digital de alta autoridade com arquitetura sob medida para direito empresarial e tributário.</p>
               </div>
               <div>
                 <div class="case-metric" style="color:var(--blue-accent)">Top Tier</div>
@@ -1468,7 +1448,7 @@
             </div>
             <div class="slide-badge">
               <span class="slide-badge-dot"></span>
-              06 • Como Trabalhamos
+              Slide 07 / 08 • Como Trabalhamos
             </div>
           </div>
 
@@ -1480,7 +1460,7 @@
 
           <div class="steps-grid">
             <!-- Passo 1 -->
-            <div class="step-card active-step">
+            <div class="step-card">
               <div class="step-number">01</div>
               <h3 class="step-title">Diagnóstico &amp; Alinhamento Estratégico</h3>
               <p class="step-desc">Mapeamos a fundo seu modelo de negócio, principais gargalos operacionais e oportunidades de alavancagem com IA e páginas de alta conversão.</p>
@@ -1501,23 +1481,23 @@
             </div>
 
             <!-- Passo 4 -->
-            <div class="step-card" style="border-color: rgba(16, 185, 129, 0.45);">
-              <div class="step-number" style="color: rgba(16, 185, 129, 0.4);">04</div>
+            <div class="step-card">
+              <div class="step-number">04</div>
               <h3 class="step-title">Go-Live, Treinamento &amp; Suporte</h3>
               <p class="step-desc">Publicação em produção, treinamento da sua equipe e monitoramento contínuo das métricas de conversão e velocidade de resposta.</p>
             </div>
           </div>
 
           <!-- Highlight Box -->
-          <div style="background: rgba(16, 26, 48, 0.85); border: 1px solid rgba(0, 210, 255, 0.25); border-radius: 16px; padding: 22px 32px; display: flex; align-items: center; justify-content: space-between; margin-top: 32px;">
+          <div style="background: rgba(16, 26, 48, 0.85); border: 1px solid rgba(0, 210, 255, 0.25); border-radius: 16px; padding: 20px 30px; display: flex; align-items: center; justify-content: space-between; margin-top: 24px;">
             <div style="display: flex; align-items: center; gap: 16px;">
-              <span style="font-size: 28px;">🛡️</span>
+              <span style="font-size: 26px;">🛡️</span>
               <div>
-                <div style="font-family: var(--font-display); font-size: 18px; font-weight: 800; color: #ffffff;">Entrega Chave na Mão (Turnkey)</div>
-                <div style="font-size: 15px; color: var(--text-muted);">Você recebe a infraestrutura 100% configurada, integrada e funcionando no seu domínio e no seu WhatsApp.</div>
+                <div style="font-family: var(--font-display); font-size: 17px; font-weight: 800; color: #ffffff;">Entrega Chave na Mão (Turnkey)</div>
+                <div style="font-size: 14.5px; color: var(--text-muted);">Você recebe a infraestrutura 100% configurada, integrada e funcionando no seu domínio e no seu WhatsApp.</div>
               </div>
             </div>
-            <div style="font-size: 15px; font-weight: 700; color: var(--cyan-neon);">
+            <div style="font-size: 14.5px; font-weight: 700; color: var(--cyan-neon); white-space: nowrap;">
               Prazos médios: 7 a 21 dias úteis
             </div>
           </div>
@@ -1541,7 +1521,7 @@
             </div>
             <div class="slide-badge">
               <span class="slide-badge-dot"></span>
-              07 • Parceria Estratégica
+              Slide 08 / 08 • Parceria Estratégica
             </div>
           </div>
 
@@ -1555,10 +1535,10 @@
             <!-- Box Principal Claro (Alto Contraste Misto) -->
             <div class="cta-main-box">
               <div>
-                <span style="background: rgba(37,99,235,0.1); color: var(--blue-accent); padding: 6px 16px; border-radius: 999px; font-size: 14px; font-weight: 800; text-transform: uppercase;">
+                <span style="background: rgba(37,99,235,0.1); color: var(--blue-accent); padding: 5px 14px; border-radius: 999px; font-size: 13px; font-weight: 800; text-transform: uppercase;">
                   Sem Custo • Sessão de 20 Minutos
                 </span>
-                <h3 style="margin-top: 18px;">Diagnóstico Estratégico Personalizado</h3>
+                <h3 style="margin-top: 14px;">Diagnóstico Estratégico Personalizado</h3>
                 <p>Nesta conversa rápida e objetiva, vamos analisar seu momento atual e apresentar uma visão clara de onde estão seus maiores gargalos de vendas e operação.</p>
 
                 <div class="cta-benefits">
@@ -1588,7 +1568,7 @@
             <!-- Box Lateral Escuro: Canais de Contato -->
             <div class="cta-side-box">
               <div>
-                <h3 style="font-family: var(--font-display); font-size: 28px; font-weight: 800; color: #ffffff; margin-bottom: 24px;">
+                <h3 style="font-family: var(--font-display); font-size: 26px; font-weight: 800; color: #ffffff; margin-bottom: 22px;">
                   Canais Oficiais U.AI
                 </h3>
 
@@ -1626,7 +1606,7 @@
                 </div>
               </div>
 
-              <div style="padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 14px; color: var(--text-muted);">
+              <div style="padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 13.5px; color: var(--text-muted);">
                 Atendimento presencial e remoto para empresas em todo o território nacional.
               </div>
             </div>
@@ -1778,6 +1758,12 @@
       }
 
       initButtons() {
+        if (window.location.search.includes('export')) {
+          if (document.getElementById('deckControls')) {
+            document.getElementById('deckControls').style.display = 'none';
+          }
+        }
+
         if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.prev());
         if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.next());
         if (this.exportBtn) {

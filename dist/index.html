@@ -82,77 +82,123 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     <a href="#ai-solutions" class="spotlight-card"><span class="path-symbol" aria-hidden="true">✳</span><div><span class="path-kicker">QUERO OPERAR MELHOR</span><h2>Menos tarefas.<br>Mais possibilidades.</h2><p>Agentes de IA, automações e sistemas integrados.</p></div><span class="path-arrow" aria-hidden="true">↗</span></a>
   </section>
 
-  <!-- 2.5 ECOSSISTEMA & TECNOLOGIAS INTEGRADAS (AUTORIDADE TÉCNICA) -->
+  <!-- 2.5 ECOSSISTEMA & TECNOLOGIAS INTEGRADAS (APPLE MACOS FLOATING DOCK) -->
   <section class="tech-authority-section" aria-label="Tecnologias e ecossistema integrado">
     <div class="container">
       <div class="tech-authority-inner">
-        <div class="tech-authority-label">
-          <span class="pulse-dot-cyan"></span>
-          <span>ECOSSISTEMA & TECNOLOGIAS INTEGRADAS</span>
+        <div class="tech-authority-header">
+          <div class="tech-authority-label">
+            <span class="pulse-dot-cyan"></span>
+            <span>ECOSSISTEMA &amp; TECNOLOGIAS INTEGRADAS</span>
+          </div>
+          <p class="tech-authority-sub">
+            Arquitetura nativa sem intermediários: inteligência generativa, mensageria oficial e infraestrutura em nuvem conectadas de ponta a ponta.
+          </p>
         </div>
-        <div class="tech-authority-grid">
-          <div class="tech-item" title="Modelos de Linguagem Avançados & GPT-4o">
-            <svg class="tech-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M22.28 9.82a5.98 5.98 0 0 0-.51-4.91 6.05 6.05 0 0 0-6.51-2.9 6.06 6.06 0 0 0-10.28 2.17 5.98 5.98 0 0 0-4 2.9 6.05 6.05 0 0 0 .74 7.1 5.98 5.98 0 0 0 .51 4.91 6.05 6.05 0 0 0 6.51 2.9 5.98 5.98 0 0 0 4.52 2.01 6.06 6.06 0 0 0 5.77-4.21 5.99 5.99 0 0 0 4-2.9 6.06 6.06 0 0 0-.75-7.07zm-9.02 12.6a4.48 4.48 0 0 1-2.88-1.04l.14-.08 4.78-2.76c.24-.14.39-.4.39-.68v-6.74l2.02 1.17c.02.01.04.03.04.05v5.58a4.5 4.5 0 0 1-4.49 4.5zm-9.66-4.12a4.47 4.47 0 0 1-.54-3.01l.14.08 4.79 2.76c.24.14.54.14.78 0l5.84-3.37v2.33c0 .03-.01.05-.03.06L9.74 19.95a4.5 4.5 0 0 1-6.14-1.65zM2.34 7.9a4.49 4.49 0 0 1 2.37-1.98v5.68c0 .28.15.54.39.68l5.81 3.35-2.02 1.17a.08.08 0 0 1-.07 0L4 14.01a4.5 4.5 0 0 1-1.66-6.11zm16.6 3.85L13.1 8.36l2.02-1.16a.08.08 0 0 1 .07 0l4.83 2.79a4.49 4.49 0 0 1-.68 8.1v-5.67c0-.28-.15-.53-.4-.67zm2.01-3.02l-.14-.08-4.77-2.79a.78.78 0 0 0-.79 0L9.41 9.23V6.9c0-.03.01-.05.03-.06l4.83-2.79a4.5 4.5 0 0 1 6.68 4.66zM8.31 12.86l-2.02-1.16a.08.08 0 0 1-.04-.06V6.07a4.5 4.5 0 0 1 7.38-3.45l-.14.08-4.79 2.76c-.24.14-.39.4-.39.68zm1.1-2.36l2.6-1.5 2.6 1.5v3l-2.6 1.5-2.6-1.5z"/>
-            </svg>
-            <div class="tech-meta">
-              <span class="tech-name">OpenAI</span>
-              <span class="tech-role">Modelos LLM & GPT-4o</span>
-            </div>
-          </div>
 
-          <div class="tech-item" title="Claude 3.5 Sonnet & Raciocínio Profundo">
-            <svg class="tech-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M13.83 3.52h3.92L24 20.48h-3.92l-1.92-4.48H9.84l-1.92 4.48H4l6.25-16.96h3.58zm2.5 9.58L14.7 9.16a16 16 0 0 0-.87-2.23h-.07a16.6 16.6 0 0 0-.87 2.23l-1.63 3.94h5.08zM4.09 3.52h3.92L0 20.48h3.92L4.09 3.52z"/>
-            </svg>
-            <div class="tech-meta">
-              <span class="tech-name">Anthropic</span>
-              <span class="tech-role">Claude & Raciocínio B2B</span>
+        <!-- MACOS FLOATING DOCK -->
+        <div class="dock-wrapper" aria-label="Barra de tecnologias integradas">
+          <div class="dock-container" id="techDock" role="list">
+            
+            <!-- 1. OpenAI -->
+            <div class="dock-item" role="listitem" tabindex="0" data-tech="openai" title="OpenAI · Modelos LLM &amp; GPT-4o">
+              <div class="dock-tooltip">
+                <span class="dock-tooltip-title">OpenAI</span>
+                <span class="dock-tooltip-sep">·</span>
+                <span class="dock-tooltip-desc">Modelos LLM &amp; GPT-4o</span>
+              </div>
+              <div class="dock-tile">
+                <svg class="dock-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M22.28 9.82a5.98 5.98 0 0 0-.51-4.91 6.05 6.05 0 0 0-6.51-2.9 6.06 6.06 0 0 0-10.28 2.17 5.98 5.98 0 0 0-4 2.9 6.05 6.05 0 0 0 .74 7.1 5.98 5.98 0 0 0 .51 4.91 6.05 6.05 0 0 0 6.51 2.9 5.98 5.98 0 0 0 4.52 2.01 6.06 6.06 0 0 0 5.77-4.21 5.99 5.99 0 0 0 4-2.9 6.06 6.06 0 0 0-.75-7.07zm-9.02 12.6a4.48 4.48 0 0 1-2.88-1.04l.14-.08 4.78-2.76c.24-.14.39-.4.39-.68v-6.74l2.02 1.17c.02.01.04.03.04.05v5.58a4.5 4.5 0 0 1-4.49 4.5zm-9.66-4.12a4.47 4.47 0 0 1-.54-3.01l.14.08 4.79 2.76c.24.14.54.14.78 0l5.84-3.37v2.33c0 .03-.01.05-.03.06L9.74 19.95a4.5 4.5 0 0 1-6.14-1.65zM2.34 7.9a4.49 4.49 0 0 1 2.37-1.98v5.68c0 .28.15.54.39.68l5.81 3.35-2.02 1.17a.08.08 0 0 1-.07 0L4 14.01a4.5 4.5 0 0 1-1.66-6.11zm16.6 3.85L13.1 8.36l2.02-1.16a.08.08 0 0 1 .07 0l4.83 2.79a4.49 4.49 0 0 1-.68 8.1v-5.67c0-.28-.15-.53-.4-.67zm2.01-3.02l-.14-.08-4.77-2.79a.78.78 0 0 0-.79 0L9.41 9.23V6.9c0-.03.01-.05.03-.06l4.83-2.79a4.5 4.5 0 0 1 6.68 4.66zM8.31 12.86l-2.02-1.16a.08.08 0 0 1-.04-.06V6.07a4.5 4.5 0 0 1 7.38-3.45l-.14.08-4.79 2.76c-.24.14-.39.4-.39.68zm1.1-2.36l2.6-1.5 2.6 1.5v3l-2.6 1.5-2.6-1.5z"/>
+                </svg>
+              </div>
+              <span class="dock-label">OpenAI</span>
+              <span class="dock-dot" aria-hidden="true"></span>
             </div>
-          </div>
 
-          <div class="tech-item" title="Meta WhatsApp Cloud API Oficial">
-            <svg class="tech-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.72 4.31 3.81.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.12-.22-.19-.47-.32"/>
-            </svg>
-            <div class="tech-meta">
-              <span class="tech-name">WhatsApp Cloud API</span>
-              <span class="tech-role">Escala Oficial Meta 24/7</span>
+            <!-- 2. Anthropic -->
+            <div class="dock-item" role="listitem" tabindex="0" data-tech="anthropic" title="Anthropic · Claude &amp; Raciocínio B2B">
+              <div class="dock-tooltip">
+                <span class="dock-tooltip-title">Anthropic</span>
+                <span class="dock-tooltip-sep">·</span>
+                <span class="dock-tooltip-desc">Claude &amp; Raciocínio B2B</span>
+              </div>
+              <div class="dock-tile">
+                <svg class="dock-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M13.83 3.52h3.92L24 20.48h-3.92l-1.92-4.48H9.84l-1.92 4.48H4l6.25-16.96h3.58zm2.5 9.58L14.7 9.16a16 16 0 0 0-.87-2.23h-.07a16.6 16.6 0 0 0-.87 2.23l-1.63 3.94h5.08zM4.09 3.52h3.92L0 20.48h3.92L4.09 3.52z"/>
+                </svg>
+              </div>
+              <span class="dock-label">Anthropic</span>
+              <span class="dock-dot" aria-hidden="true"></span>
             </div>
-          </div>
 
-          <div class="tech-item" title="Google Cloud Platform & Nuvem">
-            <svg class="tech-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/>
-            </svg>
-            <div class="tech-meta">
-              <span class="tech-name">Google Cloud</span>
-              <span class="tech-role">Infraestrutura & Nuvem</span>
+            <!-- 3. Meta WhatsApp Cloud API -->
+            <div class="dock-item" role="listitem" tabindex="0" data-tech="whatsapp" title="WhatsApp Cloud API · Escala Oficial Meta 24/7">
+              <div class="dock-tooltip">
+                <span class="dock-tooltip-title">WhatsApp Cloud API</span>
+                <span class="dock-tooltip-sep">·</span>
+                <span class="dock-tooltip-desc">Escala Oficial Meta 24/7</span>
+              </div>
+              <div class="dock-tile">
+                <svg class="dock-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.72 4.31 3.81.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.12-.22-.19-.47-.32"/>
+                </svg>
+              </div>
+              <span class="dock-label">WhatsApp API</span>
+              <span class="dock-dot" aria-hidden="true"></span>
             </div>
-          </div>
 
-          <div class="tech-item" title="Orquestração Automática com n8n & Make">
-            <svg class="tech-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.93V15a1 1 0 0 0-2 0v1.93A8 8 0 0 1 4.07 13H6a1 1 0 0 0 0-2H4.07A8 8 0 0 1 11 4.07V6a1 1 0 0 0 2 0V4.07A8 8 0 0 1 19.93 11H18a1 1 0 0 0 0 2h1.93A8 8 0 0 1 13 16.93zM12 8a4 4 0 1 0 4 4 4 4 0 0 0-4-4z"/>
-            </svg>
-            <div class="tech-meta">
-              <span class="tech-name">n8n & Make</span>
-              <span class="tech-role">Orquestração de Esteiras</span>
+            <!-- 4. Google Cloud -->
+            <div class="dock-item" role="listitem" tabindex="0" data-tech="google" title="Google Cloud · Infraestrutura &amp; Nuvem">
+              <div class="dock-tooltip">
+                <span class="dock-tooltip-title">Google Cloud</span>
+                <span class="dock-tooltip-sep">·</span>
+                <span class="dock-tooltip-desc">Infraestrutura &amp; Nuvem</span>
+              </div>
+              <div class="dock-tile">
+                <svg class="dock-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/>
+                </svg>
+              </div>
+              <span class="dock-label">Google Cloud</span>
+              <span class="dock-dot" aria-hidden="true"></span>
             </div>
-          </div>
 
-          <div class="tech-item" title="Python & Engenharia de IA Customizada">
-            <svg class="tech-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M11.91 0C5.9 0 6.27 2.61 6.27 2.61l.01 2.7h5.73v.81H3.88S0 5.67 0 11.72c0 6.04 3.39 5.82 3.39 5.82h2.02v-2.84s-.11-3.39 3.33-3.39h5.7v-.85s.5-5.91-5.71-5.91zm-2.48 1.74a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1zm2.66 22.26c6.01 0 5.64-2.61 5.64-2.61l-.01-2.7h-5.73v-.81h8.13s3.88.45 3.88-5.6c0-6.04-3.39-5.82-3.39-5.82h-2.02v2.84s.11 3.39-3.33 3.39h-5.7v.85s-.5 5.91 5.71 5.91zm2.48-1.74a1.05 1.05 0 1 1 0-2.1 1.05 1.05 0 0 1 0 2.1z"/>
-            </svg>
-            <div class="tech-meta">
-              <span class="tech-name">Python & APIs</span>
-              <span class="tech-role">Pipelines & Agentes Nativos</span>
+            <!-- 5. n8n & Make -->
+            <div class="dock-item" role="listitem" tabindex="0" data-tech="n8n" title="n8n &amp; Make · Orquestração de Esteiras">
+              <div class="dock-tooltip">
+                <span class="dock-tooltip-title">n8n &amp; Make</span>
+                <span class="dock-tooltip-sep">·</span>
+                <span class="dock-tooltip-desc">Orquestração de Esteiras</span>
+              </div>
+              <div class="dock-tile">
+                <svg class="dock-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.93V15a1 1 0 0 0-2 0v1.93A8 8 0 0 1 4.07 13H6a1 1 0 0 0 0-2H4.07A8 8 0 0 1 11 4.07V6a1 1 0 0 0 2 0V4.07A8 8 0 0 1 19.93 11H18a1 1 0 0 0 0 2h1.93A8 8 0 0 1 13 16.93zM12 8a4 4 0 1 0 4 4 4 4 0 0 0-4-4z"/>
+                </svg>
+              </div>
+              <span class="dock-label">n8n &amp; Make</span>
+              <span class="dock-dot" aria-hidden="true"></span>
             </div>
+
+            <!-- 6. Python & APIs -->
+            <div class="dock-item" role="listitem" tabindex="0" data-tech="python" title="Python &amp; APIs · Pipelines &amp; Agentes Nativos">
+              <div class="dock-tooltip">
+                <span class="dock-tooltip-title">Python &amp; APIs</span>
+                <span class="dock-tooltip-sep">·</span>
+                <span class="dock-tooltip-desc">Pipelines &amp; Agentes Nativos</span>
+              </div>
+              <div class="dock-tile">
+                <svg class="dock-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M11.91 0C5.9 0 6.27 2.61 6.27 2.61l.01 2.7h5.73v.81H3.88S0 5.67 0 11.72c0 6.04 3.39 5.82 3.39 5.82h2.02v-2.84s-.11-3.39 3.33-3.39h5.7v-.85s.5-5.91-5.71-5.91zm-2.48 1.74a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1zm2.66 22.26c6.01 0 5.64-2.61 5.64-2.61l-.01-2.7h-5.73v-.81h8.13s3.88.45 3.88-5.6c0-6.04-3.39-5.82-3.39-5.82h-2.02v2.84s.11 3.39-3.33 3.39h-5.7v.85s-.5 5.91 5.71 5.91zm2.48-1.74a1.05 1.05 0 1 1 0-2.1 1.05 1.05 0 0 1 0 2.1z"/>
+                </svg>
+              </div>
+              <span class="dock-label">Python &amp; APIs</span>
+              <span class="dock-dot" aria-hidden="true"></span>
+            </div>
+
           </div>
         </div>
       </div>
-    </div>
   </section>
 
   <!-- 3. SEÇÃO DE DORES: TRÊS FORMAS DE PERDER MARGEM -->

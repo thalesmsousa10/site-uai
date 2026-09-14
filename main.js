@@ -197,135 +197,117 @@ function initConnections(reduced) {
   resize();draw();sync();
 }
 
-// === macOS DOCK MAGNIFICATION EFFECT (ZOOM+ NO CENTRO & ZOOM- COMPRIMIDO NAS LATERAIS) ===
+// === APPLE MACOS FLOATING DOCK MAGNIFICATION (ALGORITMO ACETERNITY / MAGIC UI) ===
+// Magnificação física baseada em dimensão flexbox real (width/height):
+// 1. Zero sobreposição (o flexbox empurra os vizinhos fisicamente via layout flow).
+// 2. Zero perda de qualidade (SVGs e tipografia vetoriais em resolução nativa Retina).
+// 3. Zoom+ suave no centro e Zoom- (squeeze) estético nos adjacentes.
 function initDockEffect() {
-  const grid = document.querySelector('.tech-authority-grid');
-  if (!grid) return;
+  const dock = document.getElementById('techDock');
+  if (!dock) return;
 
-  const items = Array.from(grid.querySelectorAll('.tech-item'));
+  const items = Array.from(dock.querySelectorAll('.dock-item'));
+  const tiles = items.map(it => it.querySelector('.dock-tile'));
   if (!items.length) return;
 
-  let rafId = null;
+  const BASE_SIZE = 60; // Tamanho padrão no repouso (px)
+  const MAX_SIZE = 92;  // Zoom+ no app sob o cursor (px)
+  const MIN_SIZE = 48;  // Zoom- (squeeze) nos vizinhos mais afastados durante o dock hover (px)
+  const RADIUS = 170;   // Raio de influência do cursor (px)
+
   let mouseX = null;
-  let itemCenters = [];
-
-  const RADIUS = 240; // Raio de alcance da ampliação em pixels
-  const MAX_SCALE_BOOST = 0.28; // Zoom+ no card em foco (até 1.28x)
-  const MAX_COMPRESS = 0.08; // Zoom- nos cards adjacentes (comprime até 0.92x)
-  const MAX_ELEVATION = -14; // Eleva 14px para cima
-  const MAX_ICON_BOOST = 0.52; // Zoom+ no ícone SVG (até 1.52x)
-  const MAX_ICON_COMPRESS = 0.14; // Zoom- no ícone (comprime até 0.86x)
-
-  function cacheCenters() {
-    itemCenters = items.map(el => {
-      const rect = el.getBoundingClientRect();
-      return rect.left + rect.width / 2;
-    });
-  }
+  let rafId = null;
 
   function render() {
     if (mouseX === null) {
-      grid.classList.remove('is-docking');
-      itemCenters = [];
-      items.forEach(el => {
-        el.style.transform = '';
-        el.style.borderColor = '';
-        el.style.boxShadow = '';
-        el.style.background = '';
-        el.style.zIndex = '';
-        el.style.opacity = '';
-        const name = el.querySelector('.tech-name');
-        const role = el.querySelector('.tech-role');
-        if (name) name.style.color = '';
-        if (role) role.style.color = '';
-        const icon = el.querySelector('.tech-icon');
-        if (icon) {
-          icon.style.transform = '';
-          icon.style.filter = '';
-          icon.style.opacity = '';
-        }
+      dock.classList.remove('is-animating');
+      tiles.forEach(tile => {
+        tile.style.width = '';
+        tile.style.height = '';
+        tile.style.borderRadius = '';
       });
+      items.forEach(item => item.classList.remove('is-active'));
       rafId = null;
       return;
     }
 
-    grid.classList.add('is-docking');
+    dock.classList.add('is-animating');
 
-    if (itemCenters.length === 0) {
-      cacheCenters();
-    }
+    let closestItem = null;
+    let minDistance = Infinity;
 
-    items.forEach((el, i) => {
-      const center = itemCenters[i];
+    items.forEach((item, i) => {
+      const tile = tiles[i];
+      const rect = tile.getBoundingClientRect();
+      const center = rect.left + rect.width / 2;
       const dist = Math.abs(mouseX - center);
 
-      // Fator de foco no cursor (1 no centro, decai até 0 nas bordas do raio)
-      let factor = 0;
+      if (dist < minDistance) {
+        minDistance = dist;
+        closestItem = item;
+      }
+
       if (dist < RADIUS) {
-        factor = Math.cos((dist / RADIUS) * (Math.PI / 2));
+        // Curva suave cosseno (1 no centro, 0 na borda do raio)
+        const factor = Math.cos((dist / RADIUS) * (Math.PI / 2));
+        const size = Math.round(BASE_SIZE + (MAX_SIZE - BASE_SIZE) * Math.pow(factor, 1.2));
+        const radius = Math.round(17 + (26 - 17) * factor);
+        tile.style.width = size + 'px';
+        tile.style.height = size + 'px';
+        tile.style.borderRadius = radius + 'px';
+      } else {
+        // Zoom- nos cards adjacentes para efeito estético de espremer o dock
+        const squeeze = Math.min(1, (dist - RADIUS) / 220);
+        const size = Math.round(BASE_SIZE - (BASE_SIZE - MIN_SIZE) * (1 - squeeze * 0.4));
+        tile.style.width = size + 'px';
+        tile.style.height = size + 'px';
+        tile.style.borderRadius = '14px';
       }
+    });
 
-      // Dinâmica de Zoom+ no centro e Zoom- (compressão) nos vizinhos
-      const cardScale = (1.0 + MAX_SCALE_BOOST * factor - MAX_COMPRESS * (1.0 - factor)).toFixed(3);
-      const iconScale = (1.0 + MAX_ICON_BOOST * factor - MAX_ICON_COMPRESS * (1.0 - factor)).toFixed(3);
-      const y = (MAX_ELEVATION * factor).toFixed(2);
-
-      // Efeito de "abrir espaço": empurra suavemente os vizinhos da esquerda para a esquerda e da direita para a direita
-      const delta = center - mouseX;
-      let push = 0;
-      if (Math.abs(delta) > 12) {
-        push = (Math.sign(delta) * Math.max(0, 10 * (1 - dist / 480))).toFixed(1);
-      }
-
-      const borderAlpha = (0.06 + factor * 0.50).toFixed(3);
-      const shadowAlpha = (factor * 0.32).toFixed(3);
-      const bgAlpha = (0.60 + factor * 0.38).toFixed(3);
-      const z = Math.round(10 + factor * 30);
-      const cardOpacity = (0.75 + factor * 0.25).toFixed(3);
-
-      el.style.transform = `translate3d(${push}px, ${y}px, 0) scale(${cardScale})`;
-      el.style.borderColor = factor > 0.35 ? `rgba(0, 240, 255, ${borderAlpha})` : '';
-      el.style.boxShadow = factor > 0.35 ? `0 ${Math.round(8 * factor + 4)}px ${Math.round(28 * factor + 8)}px rgba(0, 240, 255, ${shadowAlpha})` : '';
-      el.style.background = factor > 0.35 ? `rgba(18, 42, 54, ${bgAlpha})` : '';
-      el.style.zIndex = z;
-      el.style.opacity = cardOpacity;
-
-      const name = el.querySelector('.tech-name');
-      const role = el.querySelector('.tech-role');
-      if (name) name.style.color = factor > 0.35 ? '#ffffff' : '';
-      if (role) role.style.color = factor > 0.35 ? '#a2d3eb' : '';
-
-      const icon = el.querySelector('.tech-icon');
-      if (icon) {
-        icon.style.transform = `scale(${iconScale})`;
-        icon.style.opacity = factor > 0.35 ? '1' : '0.82';
-        icon.style.filter = factor > 0.35 ? `drop-shadow(0 0 ${Math.round(14 * factor)}px rgba(0, 240, 255, ${factor * 0.95}))` : '';
-      }
+    // Ativa o tooltip superior no item sob o cursor mais próximo
+    items.forEach(item => {
+      item.classList.toggle('is-active', item === closestItem && minDistance < 55);
     });
 
     rafId = null;
   }
 
-  function handleMove(e) {
+  function onMouseMove(e) {
     mouseX = e.clientX;
-    if (itemCenters.length === 0) {
-      cacheCenters();
-    }
     if (!rafId) {
       rafId = requestAnimationFrame(render);
     }
   }
 
-  function handleLeave() {
+  function onMouseLeave() {
     mouseX = null;
     if (!rafId) {
       rafId = requestAnimationFrame(render);
     }
   }
 
-  grid.addEventListener('mousemove', handleMove, { passive: true });
-  grid.addEventListener('pointermove', handleMove, { passive: true });
-  grid.addEventListener('mouseleave', handleLeave);
-  grid.addEventListener('pointerleave', handleLeave);
-  window.addEventListener('resize', () => { itemCenters = []; }, { passive: true });
+  dock.addEventListener('mousemove', onMouseMove, { passive: true });
+  dock.addEventListener('mouseleave', onMouseLeave);
+
+  // Acessibilidade via teclado (Focus / Blur)
+  items.forEach(item => {
+    item.addEventListener('focus', () => {
+      const tile = item.querySelector('.dock-tile');
+      if (tile) {
+        tile.style.width = MAX_SIZE + 'px';
+        tile.style.height = MAX_SIZE + 'px';
+      }
+      item.classList.add('is-active');
+    });
+    item.addEventListener('blur', () => {
+      const tile = item.querySelector('.dock-tile');
+      if (tile) {
+        tile.style.width = '';
+        tile.style.height = '';
+      }
+      item.classList.remove('is-active');
+    });
+  });
 }
+

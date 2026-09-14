@@ -1057,115 +1057,218 @@ section[id],div[id] {
 
 /* Tech Authority Section / Ecosystem */
 .tech-authority-section {
-  background:#080e13;
-  border-bottom:1px solid var(--border);
-  padding:48px 0 42px;
-  position:relative;
-  overflow:visible;
+  background: #080e13;
+  border-bottom: 1px solid var(--border);
+  padding: 52px 0 46px;
+  position: relative;
+  overflow: visible;
 }
 .tech-authority-inner {
-  display:flex;
-  flex-direction:column;
-  gap:22px;
-  overflow:visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+  overflow: visible;
+}
+.tech-authority-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 680px;
 }
 .tech-authority-label {
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  font-family:var(--ff-mono);
-  font-size:10px;
-  letter-spacing:.16em;
-  color:#7997a6;
-  text-transform:uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+  color: #7997a6;
+  text-transform: uppercase;
 }
-.tech-authority-grid {
-  position:relative;
-  display:grid;
-  grid-template-columns:repeat(6, 1fr);
-  gap:14px;
-  padding:22px 8px 16px;
-  margin:-18px -8px -10px;
-  overflow:visible;
-  perspective:1000px;
+.tech-authority-sub {
+  font-size: 13px;
+  color: #8da3b2;
+  line-height: 1.5;
+  margin: 0;
 }
-.tech-item {
-  position:relative;
-  background:rgba(14, 25, 33, 0.65);
-  border:1px solid rgba(255, 255, 255, 0.07);
-  border-radius:8px;
-  padding:15px 16px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  color:#b5c7d2;
-  transform-origin:bottom center;
-  will-change:transform, border-color, box-shadow, opacity;
-  transition:transform .38s cubic-bezier(0.16, 1, 0.3, 1),
-             opacity .3s ease,
-             background .25s ease,
-             border-color .25s ease,
-             box-shadow .25s ease;
-  user-select:none;
-  cursor:pointer;
+
+/* === APPLE MACOS FLOATING DOCK WRAPPER & CONTAINER === */
+.dock-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 34px 10px 10px;
+  width: 100%;
+  overflow: visible;
 }
-.tech-item:hover {
-  transform:translateY(-10px) scale(1.18);
-  border-color:rgba(0, 240, 255, 0.45);
-  box-shadow:0 12px 30px rgba(0, 240, 255, 0.22);
-  background:rgba(20, 42, 54, 0.95);
-  z-index:25;
+.dock-container {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 16px;
+  background: rgba(12, 22, 30, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  padding: 14px 22px 16px;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  box-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.7),
+              inset 0 1px 0 rgba(255, 255, 255, 0.16),
+              0 0 35px rgba(0, 240, 255, 0.05);
+  user-select: none;
+  overflow: visible;
 }
-.tech-item:hover .tech-icon {
-  transform:scale(1.35);
-  opacity:1;
-  filter:drop-shadow(0 0 14px rgba(0, 240, 255, 0.85));
+
+/* === DOCK ITEM === */
+.dock-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
-.tech-item:hover .tech-name {
-  color:#ffffff;
+
+/* === SQUIRCLE TILE (PROPORÇÃO 1:1, BASE FÍSICA FLEXBOX SEM OVERLAP) === */
+.dock-tile {
+  width: 60px;
+  height: 60px;
+  border-radius: 17px;
+  background: linear-gradient(145deg, rgba(22, 40, 52, 0.85), rgba(11, 20, 27, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cce3ef;
+  position: relative;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.14),
+              0 8px 18px rgba(0, 0, 0, 0.35);
+  will-change: width, height, border-radius, border-color, box-shadow, background;
+  transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-radius 0.28s ease,
+              border-color 0.2s ease,
+              box-shadow 0.2s ease,
+              background 0.2s ease,
+              color 0.2s ease;
 }
-.tech-item:hover .tech-role {
-  color:#9ec7db;
+.dock-container.is-animating .dock-tile {
+  transition: width 0.08s ease-out,
+              height 0.08s ease-out,
+              border-radius 0.08s ease-out,
+              border-color 0.2s ease,
+              box-shadow 0.2s ease,
+              background 0.2s ease,
+              color 0.2s ease;
 }
-.tech-authority-grid.is-docking .tech-item {
-  transition:none !important;
+
+/* SVG DENTRO DO TILE (VETORIAL 100% NÍTIDO NO DISPLAY RETINA) */
+.dock-svg {
+  width: 50%;
+  height: 50%;
+  fill: currentColor;
+  flex-shrink: 0;
+  display: block;
+  pointer-events: none;
+  transition: filter 0.2s ease;
 }
-.tech-authority-grid.is-docking .tech-item .tech-icon {
-  transition:none !important;
+
+/* === LEGENDA SUTIL ABAIXO DO ÍCONE === */
+.dock-label {
+  font-family: var(--ff-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: #7997a6;
+  margin-top: 8px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: color 0.2s ease;
 }
-.tech-item .tech-icon {
-  flex-shrink:0;
-  color:var(--cyan);
-  opacity:.85;
-  transform-origin:center center;
-  will-change:transform, filter;
-  transition:transform .38s cubic-bezier(0.16, 1, 0.3, 1),
-             opacity .2s ease,
-             filter .25s ease;
+
+/* === PONTO LUMINOSO DE SISTEMA ATIVO === */
+.dock-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  margin-top: 4px;
+  pointer-events: none;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
-.tech-meta {
-  display:flex;
-  flex-direction:column;
-  min-width:0;
+
+/* === TOOLTIP FLUTUANTE ESTILO MACOS === */
+.dock-tooltip {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: rgba(8, 16, 22, 0.96);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  border-radius: 9999px;
+  padding: 6px 14px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7), 0 0 16px rgba(0, 240, 255, 0.18);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.18s;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
-.tech-name {
-  font-size:13px;
-  font-weight:600;
-  color:#e2edf3;
-  letter-spacing:-.01em;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  transition:color .2s ease;
+.dock-tooltip-title {
+  font-weight: 600;
+  font-size: 12px;
+  color: #ffffff;
 }
-.tech-role {
-  font-size:10px;
-  font-family:var(--ff-mono);
-  color:#6d8694;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  transition:color .2s ease;
+.dock-tooltip-sep {
+  color: #517182;
+  font-size: 11px;
+}
+.dock-tooltip-desc {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  color: var(--cyan);
+  letter-spacing: 0.02em;
+}
+
+/* === ESTADOS ATIVOS (MAGNIFIED / HOVER) === */
+.dock-item.is-active .dock-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.dock-item.is-active .dock-tile {
+  border-color: rgba(0, 240, 255, 0.65);
+  box-shadow: 0 14px 35px rgba(0, 240, 255, 0.28),
+              inset 0 1px 2px rgba(255, 255, 255, 0.35);
+  background: linear-gradient(145deg, rgba(20, 52, 68, 0.95), rgba(12, 28, 38, 0.98));
+  color: #00f0ff;
+}
+.dock-item.is-active .dock-svg {
+  filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.8));
+}
+.dock-item.is-active .dock-label {
+  color: #ffffff;
+  font-weight: 600;
+}
+.dock-item.is-active .dock-dot {
+  background: #00f0ff;
+  box-shadow: 0 0 8px #00f0ff;
+  transform: scale(1.4);
 }
 
 /* Footer Deck Banner */
@@ -1935,13 +2038,31 @@ details[open] > summary > span {
   }
 }
 
-/* Responsividade para Ecossistema, Deck B2B e Floating WhatsApp */
-@media (max-width:1100px) {
-  .tech-authority-grid {
-    grid-template-columns:repeat(3, 1fr);
-  }
-}
+/* Responsividade para Ecossistema Dock, Deck B2B e Floating WhatsApp */
 @media (max-width:800px) {
+  .dock-wrapper {
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 30px 16px 14px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .dock-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+  .dock-container {
+    gap: 12px;
+    padding: 10px 16px 12px;
+    margin: 0 auto;
+  }
+  .dock-tile {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+  }
+  .dock-label {
+    font-size: 10px;
+  }
   .footer-deck-banner {
     flex-direction:column;
     align-items:flex-start;
@@ -1956,9 +2077,6 @@ details[open] > summary > span {
     width:100%;
     text-align:center;
     justify-content:center;
-  }
-  .tech-authority-grid {
-    grid-template-columns:repeat(2, 1fr);
   }
   .hero-cta-group {
     flex-direction:column;
@@ -1978,11 +2096,6 @@ details[open] > summary > span {
   }
   .wa-main-action {
     font-size:11px;
-  }
-}
-@media (max-width:520px) {
-  .tech-authority-grid {
-    grid-template-columns:1fr;
   }
 }
 

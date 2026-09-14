@@ -1,0 +1,147 @@
+{
+  "site": "Academia Lendária",
+  "url": "https://www.academialendaria.ai",
+  "data_extracao": "2026-09-09",
+  "visao_geral": {
+    "proposta_valor": "Unir visionários que usam IA como ferramenta de transformação — não como brinquedo. Construir, testar, publicar e escalar sistemas e agentes de IA sem depender de equipes tradicionais de tecnologia.",
+    "numeros_chave": {
+      "membros_profissionais": "15.000+ empresários e visionários",
+      "paises": "40+ países",
+      "hubs_regionais": "50+ hubs em 5 continentes",
+      "alcance_conteudo": "20M+ pessoas/mês",
+      "metrica_impacto": "Economia de até R$ 1.6M/ano com esquadrões de 9 agentes de IA"
+    },
+    "founder": {
+      "nome": "Alan Nicolas",
+      "cargo": "Fundador e Líder",
+      "bio": "Criador do conceito '2º Cérebro com IA' no Brasil. Expoente em IA Generativa, focado em transformar operadores e negócios usando esquadrões de agentes autônomos sem necessidade de código prévio.",
+      "redes": {
+        "x": "https://x.com/oalanicolas",
+        "tiktok": "https://www.tiktok.com/@oalanicolas",
+        "newsletter": "https://oalanicolas.news/"
+      }
+    },
+    "equipe_chave": [
+      {
+        "nome": "Alan Nicolas",
+        "papel": "Liderança Executiva & Mentoria de IA"
+      },
+      {
+        "nome": "Lucas Rover",
+        "papel": "Coordenação Estratégica e Arquiteto da Jornada Pedagógica"
+      },
+      {
+        "nome": "Fran Martins",
+        "papel": "Head Comercial"
+      },
+      {
+        "nome": "Érica",
+        "papel": "Head de Marketing"
+      }
+    ],
+    "ecossistema": [
+      { "nome": "Agência Lendar[IA]™", "url": "https://agencialendaria.ai/" },
+      { "nome": "Super Agentes™", "url": "https://superagentes.ai/" },
+      { "nome": "Hub Lendário™", "url": "https://hub.lendario.ai/" },
+      { "nome": "Biblioteca Lendária", "url": "https://biblioteca.academialendaria.ai" }
+    ],
+    "redes_sociais": {
+      "instagram": "https://www.instagram.com/academialendaria/",
+      "youtube": "https://www.youtube.com/@Academia.Lendaria",
+      "x": "https://x.com/oalanicolas",
+      "linkedin": "https://www.linkedin.com/company/academia-lend-r-ia/",
+      "tiktok": "https://www.tiktok.com/@oalanicolas"
+    },
+    "dados_legais": {
+      "razao_social": "ACADEMIA LENDÁRIA LTDA.",
+      "cnpj": "37.348.342/0001-07"
+    }
+  },
+  "produtos_e_programas": [
+    {
+      "id": "comunidade",
+      "nome": "Comunidade Lendár[IA]",
+      "tipo": "Always-On / Assinatura contínua",
+      "url": "https://www.academialendaria.ai/comunidade",
+      "preco_estimado": "R$ 2,43 por dia (~R$ 73/mês ou plano anual equivalente)",
+      "garantia": "30 dias incondicional",
+      "resumo": "Ponto de entrada no ecossistema. 15.000+ operadores construindo com IA, cursos práticos de Claude Code, Codex e AIOX, uma skill nova toda semana, encontros quinzenais ao vivo e hubs locais.",
+      "entregaveis": [
+        "Acesso à plataforma Circle com 15k+ operadores",
+        "Cursos completos de Claude Code, Codex e AIOX",
+        "Uma skill nova toda semana (Aprende na segunda, aplica na terça)",
+        "Encontro ao vivo a cada 15 dias",
+        "Hubs presenciais em mais de 50 cidades",
+        "Eventos, Clube do Livro e Comunidade Mulheres Lendárias",
+        "Bônus: Squad de Vendas com 9 agentes de IA (baseado em SPIN, Sandler, Chris Voss, Aaron Ross)"
+      ]
+    },
+    {
+      "id": "fundamentals",
+      "nome": "Cohort Fundamentals",
+      "tipo": "Programa intensivo (4 a 6 semanas / Turmas fechadas)",
+      "url": "https://www.academialendaria.ai/fundamentals",
+      "formato": "6 aulas ao vivo (18h) + 12 sessões de acompanhamento (PS) + 30 dias de overdelivery (total 26+ encontros)",
+      "vagas_por_turma": "100 vagas",
+      "resumo": "Do zero a um sistema de captação de clientes construído por agentes de IA. Focado em quem não programa e quer sair de 'usuário de chat' para operador de sistemas com IA.",
+      "modulos_cronograma": [
+        "Encontro 1: O que é o AIOX e sua Constituição, ambiente instalado e primeiro agente respondendo",
+        "Encontro 2: Squad Creator, Workflows, time de desenvolvimento, clones e visão prática",
+        "Encontro 3: PRD e épicos, memória e segurança, reaproveitamento de código open-source",
+        "Encontro 4: SDC do início ao fim, tratamento de erros ('caminho infeliz') e primeiro workflow",
+        "Encontro 5: Mapeamento inteligente de processos e criação de squad para cuidar de SOPs",
+        "Encontro 6: Estudos de caso reais, sistema de captação demonstrável em produção e formatura"
+      ],
+      "pre_requisitos": [
+        "Claude Pro ativo",
+        "Vontade de construir na prática (zero necessidade de saber programar)"
+      ]
+    },
+    {
+      "id": "advanced",
+      "nome": "Cohort Advanced",
+      "tipo": "Imersão profunda / Avançado (8 semanas)",
+      "url": "https://www.academialendaria.ai/advanced",
+      "vagas_por_turma": "50 vagas",
+      "resumo": "O sistema completo de orquestração com 80+ agentes de IA e 6 squads premium que substituem e aceleram papéis de Dev, QA, Arquiteto, PM, Designer e DevOps.",
+      "garantia": "Condicional de 7 dias (Devolução 100% caso execute semanas 1 e 2 e não funcione)",
+      "fases": [
+        { "fase": "Fase 1: Migração", "detalhes": "Setup profissional + migração de projeto para Claude Code com AIOX" },
+        { "fase": "Fase 2: Sistema", "detalhes": "Design System audit, inventário completo e componentes Atomic" },
+        { "fase": "Fase 3: Orquestração", "detalhes": "80+ agentes, workflows avançados e deploy contínuo em domínio próprio" },
+        { "fase": "Fase 4: Graduação", "detalhes": "Showcase do projeto final em produção e certificação Maestro da IA" }
+      ],
+      "diferenciais_aiox_pro": [
+        "80+ agentes especializados vs 12 agentes básicos",
+        "6 squads premium completos",
+        "Story-driven + QA Loop + Spec Pipeline",
+        "Audit + Atomic automatizado",
+        "Domínio + CI/CD configurado",
+        "Certificação oficial 'Maestro da IA'"
+      ]
+    },
+    {
+      "id": "vale-do-silicio",
+      "nome": "Imersão Executiva no Vale do Silício",
+      "tipo": "Experiência presencial VIP (7 dias)",
+      "url": "https://www.academialendaria.ai/vale-do-silicio",
+      "data_proxima_edicao": "06 a 12 de Dezembro de 2026",
+      "vagas": "20 vagas exclusivas",
+      "preco": "R$ 24.888 (em até 4x sem juros)",
+      "resumo": "7 dias em San Francisco e Silicon Valley conectando com executores de alto nível, visitando Big Techs (Apple, Google, NASA, Stanford, Circuit Launch, Vercel) e implementando soluções no mesmo dia.",
+      "incluso": [
+        "Acesso a visitas, palestras e mentorias com Alan Nicolas e convidados",
+        "Sessões diárias de implementação orientada e hackathons com AIOX",
+        "Transporte executivo durante toda a programação",
+        "Networking executivo, jantares e ingressos (NBA / 49ers)"
+      ]
+    }
+  ],
+  "principais_argumentos_copy": [
+    "IA não é apenas chat ou brinquedo; IA é infraestrutura de negócio.",
+    "A distância entre 'não sei programar' e 'tenho 9 agentes trabalhando pra mim' é menor do que se imagina.",
+    "Ninguém aprende assistindo aula passivamente; o aprendizado acontece construindo em produção.",
+    "Economia de salários de time tradicional (equivalente a R$ 1.6M/ano) rodando localmente na máquina.",
+    "Comunidade ativa com pessoas trocando código às 3 da manhã no terminal."
+  ]
+}

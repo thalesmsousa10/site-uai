@@ -1,0 +1,449 @@
+/**
+ * ====================================================================
+ * DESIGN SYSTEM & TOKENS - REVERSO: ACADEMIA LENDÁRIA (CLONE BLUEPRINT)
+ * ====================================================================
+ * Paleta editorial de luxo (Dark Mode profundo + Destaques Ouro Champanhe
+ * e Transição Editorial em Bege/Papel no Manifesto).
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Tipografia */
+  --ff-display: 'Instrument Serif', 'Times New Roman', serif;
+  --ff-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ff-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+  /* Cores Principais (Dark Mode) */
+  --bg: #070709;
+  --bg-deep: #050507;
+  --bg-elev: #111115;
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface-hover: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  /* Texto (Off-White quente) */
+  --text: #edebe6;
+  --text-mid: rgba(237, 235, 230, 0.68);
+  --text-dim: rgba(237, 235, 230, 0.42);
+  --text-faint: rgba(237, 235, 230, 0.22);
+
+  /* Acentos Ouro / Bronze Champanhe */
+  --gold: #c9b298;
+  --gold-bright: #e4d8ca;
+  --gold-deep: #8d7556;
+  --gold-ink: #5a4a34;
+  --gold-05: rgba(201, 178, 152, 0.05);
+  --gold-10: rgba(201, 178, 152, 0.10);
+  --gold-20: rgba(201, 178, 152, 0.20);
+  --gold-glow: rgba(201, 178, 152, 0.35);
+
+  /* Seção Manifesto (Tema Papel / Editorial Light) */
+  --cream: #f3eee6;
+  --cream-deep: #e8e1d3;
+  --cream-ink: #1a1712;
+  --cream-ink-mid: rgba(26, 23, 18, 0.66);
+  --cream-ink-dim: rgba(26, 23, 18, 0.42);
+  --cream-border: rgba(26, 23, 18, 0.08);
+  --cream-border-strong: rgba(26, 23, 18, 0.16);
+
+  /* Dimensões e Transições */
+  --maxw: 1280px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ====================================================================
+ * 1. HERO & AURORA BACKGROUND
+ * ==================================================================== */
+.hero-wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: 
+    radial-gradient(80% 60% at 50% 55%, rgba(201, 178, 152, 0.08) 0%, transparent 60%),
+    radial-gradient(100% 80% at 50% 100%, rgba(212, 165, 116, 0.05) 0%, transparent 70%),
+    var(--bg);
+  overflow: hidden;
+  padding: 140px 24px 80px;
+}
+
+/* Camadas de Nebulosa / Aurora animadas */
+.hero-aurora {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.45;
+  will-change: transform;
+}
+
+.aurora-1 {
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, rgba(201, 178, 152, 0.3) 0%, transparent 70%);
+  top: -10%;
+  left: -5%;
+  animation: auroraDrift 22s ease-in-out infinite alternate;
+}
+
+.aurora-2 {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(139, 117, 86, 0.35) 0%, transparent 70%);
+  bottom: -15%;
+  right: -5%;
+  animation: auroraDrift 28s ease-in-out infinite alternate-reverse;
+}
+
+.aurora-3 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(212, 165, 116, 0.22) 0%, transparent 70%);
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: auroraDrift 18s ease-in-out infinite;
+}
+
+@keyframes auroraDrift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -20px) scale(1.08); }
+  100% { transform: translate(-25px, 25px) scale(0.95); }
+}
+
+/* Vignette para focar o conteúdo central */
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: 
+    radial-gradient(60% 60% at 50% 50%, rgba(7, 7, 9, 0.85) 0%, rgba(7, 7, 9, 0.4) 40%, transparent 75%),
+    linear-gradient(to bottom, transparent 80%, var(--bg) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 960px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* ====================================================================
+ * 2. TIPOGRAFIA & TÍTULOS
+ * ==================================================================== */
+.hero-title {
+  font-family: var(--ff-sans);
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-weight: 500;
+  line-height: 1.0;
+  letter-spacing: -0.045em;
+  color: var(--text);
+  margin-bottom: 28px;
+}
+
+/* O toque editorial com Serif em itálico */
+.hero-title .serif-accent,
+.title-serif {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--gold-bright);
+}
+
+.hero-sub {
+  font-family: var(--ff-sans);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--text-mid);
+  max-width: 720px;
+  margin: 0 auto 36px;
+}
+
+/* Eyebrow / Tag pill no topo */
+.eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-strong);
+  backdrop-filter: blur(10px);
+  color: var(--gold);
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 24px;
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981; /* Verde online ou ouro */
+  box-shadow: 0 0 10px #10b981;
+  animation: livePulse 2s infinite ease-in-out;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ====================================================================
+ * 3. BOTÕES (GLOW & SHINE SHIMMER)
+ * ==================================================================== */
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 32px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #000;
+  font-family: var(--ff-sans);
+  font-size: 14.5px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), 0 10px 30px var(--gold-glow);
+  transition: all 0.3s var(--ease);
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  background: var(--gold-bright);
+  transform: translateY(-2px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4), 0 16px 45px rgba(201, 178, 152, 0.45);
+}
+
+/* Reflexo de luz percorrendo o botão no hover */
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transition: left 0.75s var(--ease);
+}
+
+.btn-primary:hover::after {
+  left: 150%;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 30px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-strong);
+  backdrop-filter: blur(10px);
+  color: var(--text);
+  font-family: var(--ff-sans);
+  font-size: 14.5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(201, 178, 152, 0.35);
+  color: var(--gold-bright);
+}
+
+/* ====================================================================
+ * 4. BENTO GRID (POR QUE EXISTIMOS)
+ * ==================================================================== */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.bento-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px;
+  backdrop-filter: blur(16px);
+  overflow: hidden;
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.bento-card:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-hover);
+}
+
+.bento-card-big {
+  grid-column: span 4;
+}
+
+.bento-card-mid {
+  grid-column: span 2;
+}
+
+@media (max-width: 960px) {
+  .bento-card-big,
+  .bento-card-mid {
+    grid-column: span 6;
+  }
+}
+
+/* ====================================================================
+ * 5. MURAL DE PROVAS SOCIAIS (CONTINUOUS DUAL-COLUMN MARQUEE)
+ * ==================================================================== */
+.proofs-wall-wrap {
+  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.proofs-wall {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  height: 540px;
+  position: relative;
+  overflow: hidden;
+  /* Máscara de gradiente suave no topo e rodapé */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.proofs-track {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  will-change: transform;
+}
+
+.proofs-col-up .proofs-track {
+  animation: scrollWallUp 90s linear infinite;
+}
+
+.proofs-col-down .proofs-track {
+  animation: scrollWallDown 95s linear infinite;
+}
+
+.proofs-wall:hover .proofs-track {
+  animation-play-state: paused;
+}
+
+@keyframes scrollWallUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes scrollWallDown {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}
+
+/* ====================================================================
+ * 6. MANIFESTO (TRANSIÇÃO EDITORIAL CREME / PAPEL)
+ * ==================================================================== */
+.manifesto-section {
+  position: relative;
+  background: 
+    radial-gradient(70% 50% at 20% 0%, rgba(201, 178, 152, 0.18) 0%, transparent 60%),
+    radial-gradient(70% 50% at 80% 100%, rgba(212, 165, 116, 0.15) 0%, transparent 60%),
+    linear-gradient(var(--cream) 0%, var(--cream-deep) 100%);
+  color: var(--cream-ink);
+  padding: 140px 24px;
+  border-top: 1px solid var(--cream-border);
+  border-bottom: 1px solid var(--cream-border);
+  overflow: hidden;
+}
+
+/* Textura de micro-pontos sutis */
+.manifesto-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(26, 23, 18, 0.06) 1px, transparent 0);
+  background-size: 32px 32px;
+  pointer-events: none;
+  mask-image: radial-gradient(black 30%, transparent 85%);
+}
+
+.karaoke-text {
+  font-family: var(--ff-sans);
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+  color: var(--cream-ink);
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.karaoke-word {
+  opacity: 0.2;
+  transition: opacity 0.4s var(--ease);
+  display: inline-block;
+}
+
+.karaoke-word.active {
+  opacity: 1;
+}
+
+.karaoke-text em {
+  font-family: var(--ff-display);
+  font-style: italic;
+  color: var(--gold-deep);
+}
+
+/* ====================================================================
+ * 7. HUD CORNER BRACKETS (DETALHES SCI-FI / TECH)
+ * ==================================================================== */
+.hud-frame {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.hud-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--gold);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.hud-corner-tl { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
+.hud-corner-tr { top: 8px; right: 8px; border-width: 2px 2px 0 0; }
+.hud-corner-bl { bottom: 8px; left: 8px; border-width: 0 0 2px 2px; }
+.hud-corner-br { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }

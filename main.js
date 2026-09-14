@@ -197,7 +197,7 @@ function initConnections(reduced) {
   resize();draw();sync();
 }
 
-// === macOS DOCK MAGNIFICATION EFFECT (EFEITO ONDA DOCK) ===
+// === macOS DOCK MAGNIFICATION EFFECT (ZOOM+ NO CENTRO & ZOOM- COMPRIMIDO NAS LATERAIS) ===
 function initDockEffect() {
   const grid = document.querySelector('.tech-authority-grid');
   if (!grid) return;
@@ -209,10 +209,12 @@ function initDockEffect() {
   let mouseX = null;
   let itemCenters = [];
 
-  const RADIUS = 280; // Raio de alcance da ampliação em pixels
-  const MAX_SCALE = 1.18; // 18% de zoom no card central
-  const MAX_ELEVATION = -10; // Eleva 10px para cima
-  const MAX_ICON_SCALE = 1.32; // Ícone ganha 32% de destaque
+  const RADIUS = 240; // Raio de alcance da ampliação em pixels
+  const MAX_SCALE_BOOST = 0.28; // Zoom+ no card em foco (até 1.28x)
+  const MAX_COMPRESS = 0.08; // Zoom- nos cards adjacentes (comprime até 0.92x)
+  const MAX_ELEVATION = -14; // Eleva 14px para cima
+  const MAX_ICON_BOOST = 0.52; // Zoom+ no ícone SVG (até 1.52x)
+  const MAX_ICON_COMPRESS = 0.14; // Zoom- no ícone (comprime até 0.86x)
 
   function cacheCenters() {
     itemCenters = items.map(el => {
@@ -231,6 +233,7 @@ function initDockEffect() {
         el.style.boxShadow = '';
         el.style.background = '';
         el.style.zIndex = '';
+        el.style.opacity = '';
         const name = el.querySelector('.tech-name');
         const role = el.querySelector('.tech-role');
         if (name) name.style.color = '';
@@ -256,52 +259,47 @@ function initDockEffect() {
       const center = itemCenters[i];
       const dist = Math.abs(mouseX - center);
 
+      // Fator de foco no cursor (1 no centro, decai até 0 nas bordas do raio)
+      let factor = 0;
       if (dist < RADIUS) {
-        // Onda cossenoide contínua perfeitamente calibrada
-        const factor = Math.cos((dist / RADIUS) * (Math.PI / 2));
-        const scale = (1 + (MAX_SCALE - 1) * factor).toFixed(3);
-        const y = (MAX_ELEVATION * factor).toFixed(2);
-        const iconScale = (1 + (MAX_ICON_SCALE - 1) * factor).toFixed(3);
-        const borderAlpha = (0.08 + factor * 0.45).toFixed(3);
-        const shadowAlpha = (factor * 0.28).toFixed(3);
-        const bgAlpha = (0.65 + factor * 0.32).toFixed(3);
-        const z = Math.round(10 + factor * 25);
+        factor = Math.cos((dist / RADIUS) * (Math.PI / 2));
+      }
 
-        el.style.transform = `translate3d(0, ${y}px, 0) scale(${scale})`;
-        el.style.borderColor = `rgba(0, 240, 255, ${borderAlpha})`;
-        el.style.boxShadow = `0 ${Math.round(8 * factor + 4)}px ${Math.round(26 * factor + 6)}px rgba(0, 240, 255, ${shadowAlpha})`;
-        el.style.background = `rgba(18, 38, 48, ${bgAlpha})`;
-        el.style.zIndex = z;
+      // Dinâmica de Zoom+ no centro e Zoom- (compressão) nos vizinhos
+      const cardScale = (1.0 + MAX_SCALE_BOOST * factor - MAX_COMPRESS * (1.0 - factor)).toFixed(3);
+      const iconScale = (1.0 + MAX_ICON_BOOST * factor - MAX_ICON_COMPRESS * (1.0 - factor)).toFixed(3);
+      const y = (MAX_ELEVATION * factor).toFixed(2);
 
-        const name = el.querySelector('.tech-name');
-        const role = el.querySelector('.tech-role');
-        if (name) name.style.color = factor > 0.35 ? '#ffffff' : '';
-        if (role) role.style.color = factor > 0.35 ? '#9ec7db' : '';
+      // Efeito de "abrir espaço": empurra suavemente os vizinhos da esquerda para a esquerda e da direita para a direita
+      const delta = center - mouseX;
+      let push = 0;
+      if (Math.abs(delta) > 12) {
+        push = (Math.sign(delta) * Math.max(0, 10 * (1 - dist / 480))).toFixed(1);
+      }
 
-        const icon = el.querySelector('.tech-icon');
-        if (icon) {
-          icon.style.transform = `scale(${iconScale})`;
-          icon.style.opacity = '1';
-          icon.style.filter = `drop-shadow(0 0 ${Math.round(12 * factor)}px rgba(0, 240, 255, ${factor * 0.85}))`;
-        }
-      } else {
-        el.style.transform = 'translate3d(0, 0, 0) scale(1)';
-        el.style.borderColor = '';
-        el.style.boxShadow = '';
-        el.style.background = '';
-        el.style.zIndex = '1';
+      const borderAlpha = (0.06 + factor * 0.50).toFixed(3);
+      const shadowAlpha = (factor * 0.32).toFixed(3);
+      const bgAlpha = (0.60 + factor * 0.38).toFixed(3);
+      const z = Math.round(10 + factor * 30);
+      const cardOpacity = (0.75 + factor * 0.25).toFixed(3);
 
-        const name = el.querySelector('.tech-name');
-        const role = el.querySelector('.tech-role');
-        if (name) name.style.color = '';
-        if (role) role.style.color = '';
+      el.style.transform = `translate3d(${push}px, ${y}px, 0) scale(${cardScale})`;
+      el.style.borderColor = factor > 0.35 ? `rgba(0, 240, 255, ${borderAlpha})` : '';
+      el.style.boxShadow = factor > 0.35 ? `0 ${Math.round(8 * factor + 4)}px ${Math.round(28 * factor + 8)}px rgba(0, 240, 255, ${shadowAlpha})` : '';
+      el.style.background = factor > 0.35 ? `rgba(18, 42, 54, ${bgAlpha})` : '';
+      el.style.zIndex = z;
+      el.style.opacity = cardOpacity;
 
-        const icon = el.querySelector('.tech-icon');
-        if (icon) {
-          icon.style.transform = 'scale(1)';
-          icon.style.filter = '';
-          icon.style.opacity = '';
-        }
+      const name = el.querySelector('.tech-name');
+      const role = el.querySelector('.tech-role');
+      if (name) name.style.color = factor > 0.35 ? '#ffffff' : '';
+      if (role) role.style.color = factor > 0.35 ? '#a2d3eb' : '';
+
+      const icon = el.querySelector('.tech-icon');
+      if (icon) {
+        icon.style.transform = `scale(${iconScale})`;
+        icon.style.opacity = factor > 0.35 ? '1' : '0.82';
+        icon.style.filter = factor > 0.35 ? `drop-shadow(0 0 ${Math.round(14 * factor)}px rgba(0, 240, 255, ${factor * 0.95}))` : '';
       }
     });
 

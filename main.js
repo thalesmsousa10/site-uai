@@ -133,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initConnections(reduced);
+  initDockEffect(reduced);
 });
 
 function initConnections(reduced) {
@@ -194,4 +195,128 @@ function initConnections(reduced) {
   document.addEventListener('visibilitychange',sync);reduced.addEventListener('change',sync);
   document.querySelector('.hero').addEventListener('pointermove',e=>{if(e.pointerType==='mouse'){const r=canvas.getBoundingClientRect();pointerX=(e.clientX-r.left)/r.width-.5;pointerY=(e.clientY-r.top)/r.height-.5;}},{passive:true});
   resize();draw();sync();
+}
+
+// === macOS DOCK MAGNIFICATION EFFECT (EFEITO ONDA DOCK) ===
+function initDockEffect(reduced) {
+  const grid = document.querySelector('.tech-authority-grid');
+  if (!grid) return;
+
+  const items = Array.from(grid.querySelectorAll('.tech-item'));
+  const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+
+  // Em mobile/touch ou modo de movimento reduzido, preservamos o grid estático estável
+  if (reduced.matches || !isFinePointer) return;
+
+  let rafId = null;
+  let targetX = null;
+  let isInside = false;
+
+  const RADIUS = 280; // Raio de influência da onda da doca em pixels
+  const MAX_SCALE = 1.18; // Ampliação máxima do card (18%)
+  const MAX_ELEVATION = -10; // Elevação no eixo Y (sobe 10px)
+  const MAX_ICON_SCALE = 1.32; // Ampliação do ícone dentro do card
+
+  function render() {
+    if (!isInside || targetX === null) {
+      items.forEach(el => {
+        el.style.transform = '';
+        el.style.borderColor = '';
+        el.style.boxShadow = '';
+        el.style.background = '';
+        el.style.zIndex = '';
+        const name = el.querySelector('.tech-name');
+        const role = el.querySelector('.tech-role');
+        if (name) name.style.color = '';
+        if (role) role.style.color = '';
+        const icon = el.querySelector('.tech-icon');
+        if (icon) {
+          icon.style.transform = '';
+          icon.style.filter = '';
+          icon.style.opacity = '';
+        }
+      });
+      rafId = null;
+      return;
+    }
+
+    const gridRect = grid.getBoundingClientRect();
+    const mouseX = targetX - gridRect.left;
+
+    items.forEach(el => {
+      const cardCenter = el.offsetLeft + el.offsetWidth / 2;
+      const dist = Math.abs(mouseX - cardCenter);
+
+      if (dist < RADIUS) {
+        // Onda cossenoide contínua com decaimento suave
+        const factor = Math.cos((dist / RADIUS) * (Math.PI / 2));
+        const scale = (1 + (MAX_SCALE - 1) * factor).toFixed(3);
+        const y = (MAX_ELEVATION * factor).toFixed(2);
+        const iconScale = (1 + (MAX_ICON_SCALE - 1) * factor).toFixed(3);
+        const borderAlpha = (0.07 + factor * 0.45).toFixed(3);
+        const shadowAlpha = (factor * 0.25).toFixed(3);
+        const bgAlpha = (0.65 + factor * 0.3).toFixed(3);
+        const z = Math.round(10 + factor * 20);
+
+        el.style.transform = `translate3d(0, ${y}px, 0) scale(${scale})`;
+        el.style.borderColor = `rgba(0, 240, 255, ${borderAlpha})`;
+        el.style.boxShadow = `0 ${Math.round(8 * factor + 4)}px ${Math.round(28 * factor + 6)}px rgba(0, 240, 255, ${shadowAlpha})`;
+        el.style.background = `rgba(18, 38, 48, ${bgAlpha})`;
+        el.style.zIndex = z;
+
+        const name = el.querySelector('.tech-name');
+        const role = el.querySelector('.tech-role');
+        if (name) name.style.color = factor > 0.35 ? '#ffffff' : '';
+        if (role) role.style.color = factor > 0.35 ? '#9ec7db' : '';
+
+        const icon = el.querySelector('.tech-icon');
+        if (icon) {
+          icon.style.transform = `scale(${iconScale})`;
+          icon.style.opacity = '1';
+          icon.style.filter = `drop-shadow(0 0 ${Math.round(12 * factor)}px rgba(0, 240, 255, ${factor * 0.85}))`;
+        }
+      } else {
+        el.style.transform = 'translate3d(0, 0, 0) scale(1)';
+        el.style.borderColor = '';
+        el.style.boxShadow = '';
+        el.style.background = '';
+        el.style.zIndex = '1';
+
+        const name = el.querySelector('.tech-name');
+        const role = el.querySelector('.tech-role');
+        if (name) name.style.color = '';
+        if (role) role.style.color = '';
+
+        const icon = el.querySelector('.tech-icon');
+        if (icon) {
+          icon.style.transform = 'scale(1)';
+          icon.style.filter = '';
+          icon.style.opacity = '';
+        }
+      }
+    });
+
+    rafId = null;
+  }
+
+  grid.addEventListener('mouseenter', () => {
+    isInside = true;
+    grid.classList.add('is-docking');
+  });
+
+  grid.addEventListener('mousemove', e => {
+    targetX = e.clientX;
+    if (!rafId) {
+      rafId = requestAnimationFrame(render);
+    }
+  });
+
+  grid.addEventListener('mouseleave', () => {
+    isInside = false;
+    grid.classList.remove('is-docking');
+    targetX = null;
+    if (!rafId) {
+      rafId = requestAnimationFrame(render);
+    }
+  });
 }

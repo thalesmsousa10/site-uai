@@ -210,10 +210,10 @@ function initDockEffect() {
   const tiles = items.map(it => it.querySelector('.dock-tile'));
   if (!items.length) return;
 
-  const BASE_SIZE = 60; // Tamanho padrão no repouso (px)
-  const MAX_SIZE = 92;  // Zoom+ no app sob o cursor (px)
+  const BASE_SIZE = 58; // Tamanho padrão no repouso (px)
+  const MAX_SIZE = 88;  // Zoom+ no app sob o cursor (px)
   const MIN_SIZE = 48;  // Zoom- (squeeze) nos vizinhos mais afastados durante o dock hover (px)
-  const RADIUS = 170;   // Raio de influência do cursor (px)
+  const RADIUS = 150;   // Raio de influência do cursor (px)
 
   let mouseX = null;
   let rafId = null;

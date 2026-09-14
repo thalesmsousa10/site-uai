@@ -1059,15 +1059,16 @@ section[id],div[id] {
 .tech-authority-section {
   background: #080e13;
   border-bottom: 1px solid var(--border);
-  padding: 52px 0 46px;
+  padding: 50px 0 46px;
   position: relative;
   overflow: visible;
+  contain: layout;
 }
 .tech-authority-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 22px;
   text-align: center;
   overflow: visible;
 }
@@ -1101,20 +1102,26 @@ section[id],div[id] {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 34px 10px 10px;
+  padding: 36px 10px 8px;
   width: 100%;
   overflow: visible;
 }
+/* RETÂNGULO DO DOCK COM DIMENSÕES TRAVADAS:
+   Elimina 100% de layout shift na página e impede qualquer movimento na linha divisória da seção */
 .dock-container {
   position: relative;
   display: inline-flex;
   align-items: flex-end;
   justify-content: center;
   gap: 16px;
-  background: rgba(12, 22, 30, 0.75);
+  width: 560px;
+  max-width: 100%;
+  height: 156px;
+  box-sizing: border-box;
+  background: rgba(12, 22, 30, 0.78);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 28px;
-  padding: 14px 22px 16px;
+  padding: 16px 24px 16px;
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   box-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.7),
@@ -1122,15 +1129,18 @@ section[id],div[id] {
               0 0 35px rgba(0, 240, 255, 0.05);
   user-select: none;
   overflow: visible;
+  flex-shrink: 0;
 }
 
-/* === DOCK ITEM === */
+/* === DOCK ITEM (ANCORADO NA BASE DO RETÂNGULO) === */
 .dock-item {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  height: 100%;
+  flex-shrink: 0;
   cursor: pointer;
   outline: none;
   -webkit-tap-highlight-color: transparent;
@@ -1138,9 +1148,9 @@ section[id],div[id] {
 
 /* === SQUIRCLE TILE (PROPORÇÃO 1:1, BASE FÍSICA FLEXBOX SEM OVERLAP) === */
 .dock-tile {
-  width: 60px;
-  height: 60px;
-  border-radius: 17px;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
   background: linear-gradient(145deg, rgba(22, 40, 52, 0.85), rgba(11, 20, 27, 0.95));
   border: 1px solid rgba(255, 255, 255, 0.09);
   display: flex;

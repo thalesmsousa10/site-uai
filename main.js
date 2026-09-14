@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initConnections(reduced);
-  initDockEffect(reduced);
+  initDockEffect();
 });
 
 function initConnections(reduced) {
@@ -198,27 +198,33 @@ function initConnections(reduced) {
 }
 
 // === macOS DOCK MAGNIFICATION EFFECT (EFEITO ONDA DOCK) ===
-function initDockEffect(reduced) {
+function initDockEffect() {
   const grid = document.querySelector('.tech-authority-grid');
   if (!grid) return;
 
   const items = Array.from(grid.querySelectorAll('.tech-item'));
-  const isFinePointer = window.matchMedia('(pointer: fine)').matches;
-
-  // Em mobile/touch ou modo de movimento reduzido, preservamos o grid estático estável
-  if (reduced.matches || !isFinePointer) return;
+  if (!items.length) return;
 
   let rafId = null;
-  let targetX = null;
-  let isInside = false;
+  let mouseX = null;
+  let itemCenters = [];
 
-  const RADIUS = 280; // Raio de influência da onda da doca em pixels
-  const MAX_SCALE = 1.18; // Ampliação máxima do card (18%)
-  const MAX_ELEVATION = -10; // Elevação no eixo Y (sobe 10px)
-  const MAX_ICON_SCALE = 1.32; // Ampliação do ícone dentro do card
+  const RADIUS = 280; // Raio de alcance da ampliação em pixels
+  const MAX_SCALE = 1.18; // 18% de zoom no card central
+  const MAX_ELEVATION = -10; // Eleva 10px para cima
+  const MAX_ICON_SCALE = 1.32; // Ícone ganha 32% de destaque
+
+  function cacheCenters() {
+    itemCenters = items.map(el => {
+      const rect = el.getBoundingClientRect();
+      return rect.left + rect.width / 2;
+    });
+  }
 
   function render() {
-    if (!isInside || targetX === null) {
+    if (mouseX === null) {
+      grid.classList.remove('is-docking');
+      itemCenters = [];
       items.forEach(el => {
         el.style.transform = '';
         el.style.borderColor = '';
@@ -240,27 +246,30 @@ function initDockEffect(reduced) {
       return;
     }
 
-    const gridRect = grid.getBoundingClientRect();
-    const mouseX = targetX - gridRect.left;
+    grid.classList.add('is-docking');
 
-    items.forEach(el => {
-      const cardCenter = el.offsetLeft + el.offsetWidth / 2;
-      const dist = Math.abs(mouseX - cardCenter);
+    if (itemCenters.length === 0) {
+      cacheCenters();
+    }
+
+    items.forEach((el, i) => {
+      const center = itemCenters[i];
+      const dist = Math.abs(mouseX - center);
 
       if (dist < RADIUS) {
-        // Onda cossenoide contínua com decaimento suave
+        // Onda cossenoide contínua perfeitamente calibrada
         const factor = Math.cos((dist / RADIUS) * (Math.PI / 2));
         const scale = (1 + (MAX_SCALE - 1) * factor).toFixed(3);
         const y = (MAX_ELEVATION * factor).toFixed(2);
         const iconScale = (1 + (MAX_ICON_SCALE - 1) * factor).toFixed(3);
-        const borderAlpha = (0.07 + factor * 0.45).toFixed(3);
-        const shadowAlpha = (factor * 0.25).toFixed(3);
-        const bgAlpha = (0.65 + factor * 0.3).toFixed(3);
-        const z = Math.round(10 + factor * 20);
+        const borderAlpha = (0.08 + factor * 0.45).toFixed(3);
+        const shadowAlpha = (factor * 0.28).toFixed(3);
+        const bgAlpha = (0.65 + factor * 0.32).toFixed(3);
+        const z = Math.round(10 + factor * 25);
 
         el.style.transform = `translate3d(0, ${y}px, 0) scale(${scale})`;
         el.style.borderColor = `rgba(0, 240, 255, ${borderAlpha})`;
-        el.style.boxShadow = `0 ${Math.round(8 * factor + 4)}px ${Math.round(28 * factor + 6)}px rgba(0, 240, 255, ${shadowAlpha})`;
+        el.style.boxShadow = `0 ${Math.round(8 * factor + 4)}px ${Math.round(26 * factor + 6)}px rgba(0, 240, 255, ${shadowAlpha})`;
         el.style.background = `rgba(18, 38, 48, ${bgAlpha})`;
         el.style.zIndex = z;
 
@@ -299,24 +308,26 @@ function initDockEffect(reduced) {
     rafId = null;
   }
 
-  grid.addEventListener('mouseenter', () => {
-    isInside = true;
-    grid.classList.add('is-docking');
-  });
-
-  grid.addEventListener('mousemove', e => {
-    targetX = e.clientX;
+  function handleMove(e) {
+    mouseX = e.clientX;
+    if (itemCenters.length === 0) {
+      cacheCenters();
+    }
     if (!rafId) {
       rafId = requestAnimationFrame(render);
     }
-  });
+  }
 
-  grid.addEventListener('mouseleave', () => {
-    isInside = false;
-    grid.classList.remove('is-docking');
-    targetX = null;
+  function handleLeave() {
+    mouseX = null;
     if (!rafId) {
       rafId = requestAnimationFrame(render);
     }
-  });
+  }
+
+  grid.addEventListener('mousemove', handleMove, { passive: true });
+  grid.addEventListener('pointermove', handleMove, { passive: true });
+  grid.addEventListener('mouseleave', handleLeave);
+  grid.addEventListener('pointerleave', handleLeave);
+  window.addEventListener('resize', () => { itemCenters = []; }, { passive: true });
 }

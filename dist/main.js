@@ -93,9 +93,21 @@ document.addEventListener('DOMContentLoaded', () => {
     window.open(`https://wa.me/${UAI_CONTACT.whatsapp}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
     status.textContent = 'Continue no WhatsApp para enviar sua mensagem. Nenhum diagnóstico foi agendado automaticamente.';
   });
+  const defaultWaMsg = encodeURIComponent("Olá, estou vindo pelo site da U.AI!\nGostaria de estar conversando com a equipe sobre um novo projeto para minha empresa!");
   document.querySelectorAll('a[href*="wa.me/"]').forEach(link => {
-    if (UAI_CONTACT.whatsapp) link.href = `https://wa.me/${UAI_CONTACT.whatsapp}`;
-    else { link.href = '#calculadora'; link.removeAttribute('target'); link.title = 'Ir para o diagnóstico'; }
+    if (UAI_CONTACT.whatsapp) {
+      try {
+        const url = new URL(link.href, window.location.href);
+        const textParam = url.searchParams.get('text');
+        link.href = `https://wa.me/${UAI_CONTACT.whatsapp}?text=${encodeURIComponent(textParam || "Olá, estou vindo pelo site da U.AI!\nGostaria de estar conversando com a equipe sobre um novo projeto para minha empresa!")}`;
+      } catch (e) {
+        link.href = `https://wa.me/${UAI_CONTACT.whatsapp}?text=${defaultWaMsg}`;
+      }
+    } else {
+      link.href = '#calculadora';
+      link.removeAttribute('target');
+      link.title = 'Ir para o diagnóstico';
+    }
     link.rel = 'noopener noreferrer';
   });
   if (window.gsap && window.ScrollTrigger) {
